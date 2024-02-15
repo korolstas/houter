@@ -1,0 +1,14 @@
+@import "../../assets/styles/variables.scss";
+
+.wrapper {
+  display: flex;
+  overflow-x: auto;
+  scroll-behavior: smooth;
+  width: 100%;
+  height: max-content;
+  gap: 16px;
+
+  &::-webkit-scrollbar {
+    width: 0;
+  }
+}

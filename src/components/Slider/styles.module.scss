@@ -1,0 +1,63 @@
+@import "../../assets/styles/variables.scss";
+
+.slider {
+  &_top {
+    margin: 0 6svw;
+    position: relative;
+    padding-left: 40px;
+    color: $textYellow;
+    font-family: Lexend;
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 17.5px;
+    letter-spacing: 0px;
+    text-align: left;
+
+    &::before {
+      content: "";
+      position: absolute;
+      top: 50%;
+      left: 0;
+      width: 32px;
+      height: 1px;
+      background: $textYellow;
+      z-index: 1;
+
+      span {
+        background: white;
+        padding: 0 20px;
+        position: relative;
+        z-index: 2;
+      }
+    }
+  }
+
+  &_header {
+    margin: 0 6svw 40px 6svw;
+
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+
+    h2 {
+      color: $text;
+      font-family: Lexend;
+      font-size: 32px;
+      font-weight: 600;
+      line-height: 40px;
+      letter-spacing: 0px;
+      text-align: left;
+      margin: 12px 0 0 40px;
+    }
+
+    &_bttns {
+      display: flex;
+      gap: 32px;
+    }
+
+    &_arrows {
+      display: flex;
+      gap: 16px;
+    }
+  }
+}

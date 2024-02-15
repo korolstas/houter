@@ -1,0 +1,49 @@
+@import "../../assets/styles/variables.scss";
+
+.item {
+  &:first-child {
+    margin-left: 48px;
+  }
+
+  &:last-child {
+    margin-right: 48px;
+  }
+
+  padding: 24px;
+  display: flex;
+  flex-wrap: nowrap;
+  gap: 16px;
+  background-color: white;
+  border-radius: 32px;
+
+  &_image {
+    display: flex;
+    width: max-content;
+
+    img {
+      height: 56px;
+      width: max-content;
+    }
+  }
+
+  &_label {
+    white-space: nowrap;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    color: $text;
+    font-family: Lexend;
+
+    h4 {
+      font-size: 16px;
+      line-height: 24px;
+      font-weight: 600;
+    }
+
+    span {
+      font-size: 12px;
+      line-height: 20px;
+      font-weight: 400;
+    }
+  }
+}

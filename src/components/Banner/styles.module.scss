@@ -1,0 +1,57 @@
+@import "../../assets/styles/variables.scss";
+
+.banner {
+  position: absolute;
+  bottom: 5%;
+  left: 5%;
+  display: flex;
+  align-items: center;
+  font-family: Lexend;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 18px;
+  letter-spacing: 0px;
+  gap: 10px;
+  border-radius: 32px;
+  padding: 8px 16px 8px 16px;
+  height: 34px;
+  width: max-content;
+
+  svg {
+    path {
+      fill: #ef4444;
+    }
+  }
+}
+
+.popular {
+  color: #ef4444;
+  background-color: #fee2e2;
+  svg {
+    path {
+      fill: #ef4444;
+    }
+  }
+}
+
+.newHouse {
+  color: #1d4ed8;
+  background-color: #dbeafe;
+
+  svg {
+    path {
+      fill: #1d4ed8;
+    }
+  }
+}
+
+.wallet {
+  color: #047857;
+  background-color: #d1fae5;
+
+  svg {
+    path {
+      fill: #047857;
+    }
+  }
+}

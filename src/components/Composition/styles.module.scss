@@ -1,0 +1,102 @@
+@import "../../assets/styles/variables.scss";
+
+.container {
+  display: flex;
+  margin: 0 6vw;
+  justify-content: space-between;
+}
+
+.desc {
+  max-width: 50%;
+  &_top {
+    position: relative;
+    padding-left: 40px;
+    color: $textYellow;
+    font-family: Lexend;
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 17.5px;
+    letter-spacing: 0px;
+    text-align: left;
+
+    &::before {
+      content: "";
+      position: absolute;
+      top: 50%;
+      left: 0;
+      width: 32px;
+      height: 1px;
+      background: $textYellow;
+      z-index: 1;
+
+      span {
+        background: white;
+        padding: 0 20px;
+        position: relative;
+        z-index: 2;
+      }
+    }
+  }
+
+  &_margin {
+    margin-left: 40px;
+
+    h2 {
+      color: $text;
+      font-family: Lexend;
+      font-size: 32px;
+      font-weight: 600;
+      line-height: 40px;
+      letter-spacing: 0px;
+      text-align: left;
+      margin: 12px 0 0 0;
+    }
+
+    h4 {
+      width: 450px;
+      font-family: Lexend;
+      font-size: 16px;
+      font-weight: 400;
+      line-height: 28px;
+      letter-spacing: 0px;
+      text-align: left;
+      margin-top: 16px;
+      color: $textGray;
+    }
+  }
+
+  &_detail {
+    margin-top: 16px;
+    &_header {
+      font-family: Lexend;
+      font-size: 16px;
+      font-weight: 600;
+      line-height: 28px;
+      letter-spacing: 0px;
+      text-align: left;
+      color: $text;
+    }
+
+    &_items {
+      display: flex;
+      flex-wrap: wrap;
+      width: 440px;
+      gap: 16px;
+
+      &_item {
+        display: flex;
+        align-items: center;
+        gap: 16px;
+        width: 194px;
+        height: 32px;
+        font-family: Lexend;
+        font-size: 16px;
+        font-weight: 500;
+        line-height: 20px;
+        letter-spacing: 0px;
+        text-align: left;
+        color: $textDarkenGrey;
+      }
+    }
+  }
+}

@@ -1,0 +1,207 @@
+@import "../../assets/styles/variables.scss";
+
+.radius {
+  display: flex;
+  align-items: center;
+  border-radius: 2rem;
+}
+
+.darkGreen {
+  margin-right: 40px;
+  font-family: Lexend;
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 22px;
+  display: flex;
+  justify-content: center;
+  padding: 0.75rem 1.5rem;
+  background: $backgroundGreenLight;
+  color: $textGreen;
+  border: none;
+  transition: all 0.3s linear;
+
+  &:hover {
+    cursor: pointer;
+    background: $textGreen;
+    color: $backgroundGreenLight;
+  }
+}
+
+.white {
+  display: flex;
+  font-family: Lexend;
+  color: $textWhite;
+  font-size: 14px;
+  line-height: 17.5px;
+  height: max-content;
+  font-weight: 600;
+  text-transform: capitalize;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  background: rgba(255, 255, 255, 0.1);
+  gap: 0.625rem;
+  padding: 0.5rem 1rem;
+  transition: all 0.2s linear;
+
+  svg {
+    transform: rotate(90deg);
+    height: 18px;
+    path {
+      transition: all 0.2s linear;
+    }
+  }
+
+  &:hover + .popup_list {
+    display: flex;
+  }
+
+  &:hover {
+    cursor: pointer;
+    color: $text;
+    border: 1px solid $text;
+
+    svg {
+      path {
+        fill: $text;
+      }
+    }
+  }
+}
+
+.common {
+  justify-content: center;
+  font-family: Lexend;
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 22px;
+  letter-spacing: 0px;
+  color: white;
+  border: none;
+  background-color: $backgroundGreen;
+  width: 110px;
+  height: 48px;
+  padding: 12px, 16px, 12px, 16px;
+  gap: 4px;
+  border: 1px solid $backgroundGreen;
+  transition: all 0.2s linear;
+  outline: none;
+
+  svg {
+    path {
+      transition: all 0.2s linear;
+    }
+  }
+
+  &:hover {
+    background: $backgroundGreenLight;
+    color: $backgroundGreen;
+    cursor: pointer;
+
+    svg {
+      path {
+        fill: $backgroundGreen;
+      }
+    }
+  }
+}
+
+.secondary {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  font-family: Lexend;
+  font-size: 18px;
+  font-weight: 500;
+  line-height: 28px;
+  letter-spacing: 0px;
+  text-align: left;
+
+  color: $textGray;
+  background-color: white;
+  width: max-content;
+  height: 52px;
+  padding: 24px 14px;
+  gap: 4px;
+  border: 1px solid $backgroundGray;
+  transition: all 0.2s linear;
+
+  svg {
+    path {
+      fill: $textGray;
+      transition: all 0.2s linear;
+    }
+  }
+
+  &:hover {
+    background: $backgroundGreenLight;
+    color: $backgroundGreen;
+    border: 1px solid $backgroundGreen;
+    cursor: pointer;
+
+    svg {
+      path {
+        fill: $backgroundGreen;
+      }
+    }
+  }
+}
+
+.secondary_active {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  font-family: Lexend;
+  font-size: 18px;
+  font-weight: 500;
+  line-height: 28px;
+  letter-spacing: 0px;
+  text-align: left;
+
+  background: $backgroundGreenLight;
+  color: $backgroundGreen;
+  border: 1px solid $backgroundGreen;
+  width: max-content;
+  height: 52px;
+  padding: 24px 14px;
+  gap: 4px;
+
+  svg {
+    path {
+      fill: $backgroundGreen;
+    }
+  }
+
+  &:hover {
+    cursor: pointer;
+  }
+}
+
+.arrow {
+  display: flex;
+  justify-content: center;
+
+  background-color: $backgroundGray;
+  width: 60px;
+  height: 52px;
+  padding: 16px 12px;
+  border: 1px solid $backgroundGray;
+  transition: all 0.2s linear;
+
+  svg {
+    path {
+      fill: $text;
+      transition: all 0.2s linear;
+    }
+  }
+
+  &:hover {
+    background: $backgroundGreen;
+    border: 1px solid $backgroundGreen;
+    cursor: pointer;
+
+    svg {
+      path {
+        fill: white;
+      }
+    }
+  }
+}
