@@ -1,13 +1,18 @@
+import { useStore } from "@mobx";
+
 import styles from "./styles.module.scss";
 
 import { confMenu } from "./config";
 
 import { SvgSwitcher } from "../SvgSwitcher";
-import { Button } from "../Button";
 import { Dropdown } from "../Dropdown";
+import { Button } from "../Button";
 
 export const Header = () => {
-  const bttn_text = "Sign Up!";
+  const { modalStore } = useStore();
+  const { setModalType } = modalStore;
+
+  const bttn_text = "Sign In!";
 
   return (
     <div className={styles.container}>
@@ -23,7 +28,9 @@ export const Header = () => {
               );
             })}
           </div>
-          <Button variant={"darkGreen"}>{bttn_text}</Button>
+          <Button onClick={() => setModalType("login")} variant={"darkGreen"}>
+            {bttn_text}
+          </Button>
         </div>
       </div>
     </div>

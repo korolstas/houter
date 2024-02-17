@@ -1,8 +1,16 @@
+// import Image from "next/image";
+import Image, { StaticImageData } from "next/image";
+
 import { compositionInfo } from "@pages/home/config";
+
 import { SvgSwitcher } from "../SvgSwitcher";
-import styles from "./styles.module.scss";
+import { SliderPictureByOne } from "../sliders";
 import { UserCard } from "../UserCard";
-import { StaticImageData } from "next/image";
+import styles from "./styles.module.scss";
+
+import image1 from "../../../public/img/home/Woodlandside.png";
+import image2 from "../../../public/img/home/TheOldLighthouse.png";
+import image3 from "../../../public/img/home/apartment_1.webp";
 
 interface CompositionProps {
   descrioption: string;
@@ -49,7 +57,13 @@ export const Composition = ({
           <UserCard isWho={true} isContactNow={true} size={56} user={user} />
         </div>
       </div>
-      <div className={styles.img_content}></div>
+      <SliderPictureByOne>
+        <>
+          <Image src={image1} alt="" />
+          <Image src={image2} alt="" />
+          <Image src={image3} alt="" />
+        </>
+      </SliderPictureByOne>
     </div>
   );
 };

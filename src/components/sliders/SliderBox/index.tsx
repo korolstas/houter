@@ -1,9 +1,9 @@
 import { CSSProperties, useRef } from "react";
 import { observer } from "mobx-react-lite";
 
-import { HorizontalScroll } from "../HorizontalScroll";
-import { SvgSwitcher } from "../SvgSwitcher";
-import { Button } from "../Button";
+import { HorizontalScroll } from "../../HorizontalScroll";
+import { SvgSwitcher } from "../../SvgSwitcher";
+import { Button } from "../../Button";
 
 import styles from "./styles.module.scss";
 import { useStore } from "@/mobx";
@@ -91,4 +91,4 @@ const SliderComponent = ({
   );
 };
 
-export const Slider = observer(SliderComponent);
+export const SliderBox = observer(SliderComponent);
