@@ -2,14 +2,19 @@ import Image, { StaticImageData } from "next/image";
 
 import styles from "./styles.module.scss";
 
-type Props = {
+type RaitingCardProps = {
   image: StaticImageData;
   description: string;
   header: string;
   alt: string;
 };
 
-export const RaitingCard = ({ image, alt, header, description }: Props) => {
+export const RaitingCard = ({
+  description,
+  header,
+  image,
+  alt,
+}: RaitingCardProps) => {
   return (
     <div className={styles.item}>
       <div className={styles.item_image}>

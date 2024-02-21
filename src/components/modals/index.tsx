@@ -2,15 +2,16 @@ import { observer } from "mobx-react-lite";
 
 import { useStore } from "@mobx";
 
-import { Login } from "./variants";
 import "./modal.scss";
+
+import { Login } from "./variants";
 
 const ModalComponent = () => {
   const { modalStore } = useStore();
-  const { modalType, setModalType } = modalStore;
+  const { modalProps, setModalProps } = modalStore;
 
   const getModalElement = () => {
-    switch (modalType) {
+    switch (modalProps) {
       case "login":
         return <Login />;
       default:
@@ -19,9 +20,9 @@ const ModalComponent = () => {
   };
 
   return (
-    <div className={`modal_container ${modalType ? "active" : null}`}>
+    <div className={`modal_container ${modalProps ? "active" : null}`}>
       <div className="modal">
-        <button onClick={() => setModalType(null)} className="modal_close" />
+        <button onClick={() => setModalProps(null)} className="modal_close" />
         {getModalElement()}
       </div>
     </div>

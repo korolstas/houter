@@ -120,7 +120,8 @@ form h1 {
     color: $textGray;
   }
 
-  &:hover, &:focus {
+  &:hover,
+  &:focus {
     border-color: $backgroundGreen;
   }
 }

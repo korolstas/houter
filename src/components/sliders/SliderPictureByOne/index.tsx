@@ -1,10 +1,12 @@
+import { ReactNode } from "react";
+
 import styles from "./styles.module.scss";
 
-type SliderPicture = {
-  children: JSX.Element;
+type SliderPictureByOneProps = {
+  children: ReactNode;
 };
 
-export const SliderPictureByOne = ({ children }: SliderPicture) => {
+export const SliderPictureByOne = ({ children }: SliderPictureByOneProps) => {
   return (
     <div className={styles.slider_wrapper}>
       <div className={styles.slider}>{children}</div>
@@ -13,7 +15,6 @@ export const SliderPictureByOne = ({ children }: SliderPicture) => {
         <a href="#slider-2"></a>
         <a href="#slider-3"></a>
       </div>
-
       SOON...
     </div>
   );

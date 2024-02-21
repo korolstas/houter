@@ -1,12 +1,12 @@
-import { SvgSwitcher } from "../SvgSwitcher";
+import { BannerVariant } from "@types";
 
 import styles from "./styles.module.scss";
 
-export type BannerVariant = "popular" | "newHouse" | "wallet";
+import { SvgSwitcher } from "../SvgSwitcher";
 
-interface Props {
+type BannerProps = {
   variant: BannerVariant | string;
-}
+};
 
 const getData = (variant: BannerVariant | string) => {
   switch (variant) {
@@ -36,7 +36,7 @@ const getData = (variant: BannerVariant | string) => {
   }
 };
 
-export const Banner = ({ variant }: Props) => {
+export const Banner = ({ variant }: BannerProps) => {
   return (
     <div className={`${styles[variant]} ${styles.banner}`}>
       {getData(variant)}

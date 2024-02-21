@@ -16,7 +16,11 @@ import Carport from "../../../public/img/home/carport.svg";
 import Floor from "../../../public/img/home/floor.svg";
 import Call from "../../../public/img/home/call.svg";
 
-type Switcher =
+import Properties from "../../../public/img/header/properties.svg";
+import Profile from "../../../public/img/header/profile.svg";
+import Logout from "../../../public/img/header/logout.svg";
+
+type PictureProps =
   | "house"
   | "villa"
   | "apartment"
@@ -30,14 +34,17 @@ type Switcher =
   | "bathroom"
   | "carport"
   | "floor"
-  | "call";
+  | "call"
+  | "properties"
+  | "profile"
+  | "logout";
 
-interface Props {
-  variant: Switcher | string;
+type SvgSwitcherProps = {
+  variant: PictureProps | string;
   style?: CSSProperties;
-}
+};
 
-export const SvgSwitcher = ({ variant, style }: Props) => {
+export const SvgSwitcher = ({ variant, style }: SvgSwitcherProps) => {
   switch (variant) {
     case "house":
       return <Home style={style} />;
@@ -67,6 +74,12 @@ export const SvgSwitcher = ({ variant, style }: Props) => {
       return <Floor style={style} />;
     case "call":
       return <Call style={style} />;
+    case "properties":
+      return <Properties style={style} />;
+    case "logout":
+      return <Logout style={style} />;
+    case "profile":
+      return <Profile style={style} />;
     default:
       return <></>;
   }

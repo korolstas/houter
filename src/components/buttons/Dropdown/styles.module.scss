@@ -1,0 +1,191 @@
+@import "../../../assets/styles/variables.scss";
+
+.dropdown {
+  position: relative;
+  display: inline-block;
+
+  &:hover .dropdownMenu,
+  &:focus-within .dropdownMenu {
+    display: block;
+  }
+
+  &:hover .bttn,
+  &:focus-within .bttn {
+    cursor: pointer;
+
+    &.white {
+      color: $text;
+      border: 1px solid $text;
+
+      svg {
+        path {
+          fill: $text;
+        }
+      }
+    }
+    &.green {
+      border: 1px solid $backgroundGreen;
+
+      &.logout {
+        border: 1px solid red;
+      }
+    }
+  }
+}
+
+.dropdownMenu {
+  display: none;
+  align-items: center;
+  font-family: Lexend;
+  position: absolute;
+  min-width: 100%;
+  z-index: 1;
+
+  a {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    text-decoration: none;
+    padding: 12px 16px;
+    transition: all 0.3s ease;
+
+    svg {
+      width: 20px;
+      height: 20px;
+    }
+
+    &:first-child {
+      border-radius: 1rem 1rem 0 0;
+    }
+
+    &:last-child {
+      border-radius: 0 0 1rem 1rem;
+    }
+  }
+
+  &.green {
+    font-size: 14px;
+    line-height: 17.5px;
+    font-weight: 600;
+
+    border-radius: 1rem;
+    border: 1px solid $backgroundGreen;
+    background: rgba($backgroundGreenLight, 0.5);
+
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+
+    a {
+      color: #fff;
+
+      svg {
+        path {
+          fill: #fff;
+          transition: all 0.3s ease;
+        }
+      }
+
+      &:hover {
+        color: $backgroundGreen;
+        background: $backgroundGreenLight;
+
+        &.logout {
+          color: red;
+          background: rgb(255, 229, 229);
+
+          svg {
+            path {
+              fill: red;
+              transition: all 0.3s ease;
+            }
+          }
+        }
+
+        svg {
+          path {
+            fill: $backgroundGreen;
+            transition: all 0.3s ease;
+          }
+        }
+      }
+    }
+  }
+
+  &.white {
+    font-size: 14px;
+    line-height: 17.5px;
+    font-weight: 600;
+
+    border-radius: 1rem;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    background: rgba(255, 255, 255, 0.1);
+
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+
+    a {
+      color: #fff;
+
+      svg {
+        path {
+          fill: #fff;
+          transition: all 0.3s ease;
+        }
+      }
+
+      &:hover {
+        color: $text;
+        background: rgba(255, 255, 255, 0.619);
+
+        svg {
+          path {
+            fill: $text;
+            transition: all 0.3s ease;
+          }
+        }
+      }
+    }
+  }
+}
+
+.bttn {
+  display: flex;
+  align-items: center;
+  font-family: Lexend;
+  gap: 0.625rem;
+  height: max-content;
+  transition: all 0.3s ease;
+
+  &.green {
+    color: $text;
+    line-height: 17.5px;
+    border-radius: 1rem !important;
+    font-size: 14px;
+    padding: 7px 20px;
+    border: 1px solid $backgroundGreenLight;
+    background-color: $backgroundGreenLight;
+  }
+
+  &.white {
+    color: $textWhite;
+    font-size: 14px;
+    line-height: 17.5px;
+    font-weight: 600;
+    text-transform: capitalize;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    background: rgba(255, 255, 255, 0.1);
+    padding: 0.5rem 1.5rem;
+
+    svg {
+      transform: rotate(90deg);
+      height: 18px;
+      path {
+        transition: all 0.3s ease;
+      }
+    }
+  }
+}
+
+.radius {
+  display: flex;
+  align-items: center;
+  border-radius: 2rem;
+}

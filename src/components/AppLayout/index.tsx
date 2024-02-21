@@ -1,20 +1,21 @@
 import { StaticImageData } from "next/image";
-
-import { HorizontalScroll } from "../HorizontalScroll";
-import { Header } from "../Header";
+import { ReactNode } from "react";
 
 import styles from "./styles.module.scss";
+
+import { HorizontalScroll } from "../HorizontalScroll";
 import { RaitingCard } from "../RaitingCard";
+import { Header } from "../Header";
 
 type Props = {
-  children: JSX.Element;
-  scrollingData: {
+  children: ReactNode;
+  scrollingData?: {
     image: StaticImageData;
     description: string;
     header: string;
     alt: string;
-  }[] | undefined;
-}
+  }[];
+};
 
 export const AppLayout = ({ children, scrollingData }: Props) => {
   return (

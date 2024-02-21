@@ -19,9 +19,9 @@ import { bttns, cards, partners, scrollingData } from "./config";
 import { home } from "../../assets/text/index.json";
 import styles from "./styles.module.scss";
 
-export const HomeComponent = () => {
+const HomeComponent = () => {
   const { sliderStore } = useStore();
-  const { bttnType } = sliderStore;
+  const { bttnProps } = sliderStore;
 
   return (
     <>
@@ -64,7 +64,7 @@ export const HomeComponent = () => {
           bttns={bttns}
         >
           {cards
-            .filter(({ type }) => type === bttnType)
+            .filter(({ type }) => type === bttnProps)
             .map(({ image, title, price, user, banner }) => {
               return (
                 <Card

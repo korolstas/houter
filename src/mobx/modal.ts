@@ -1,15 +1,15 @@
 import { makeAutoObservable } from "mobx";
 
-type Modal = 'login';
+type Modal = "login";
 
-export class modalStore {
-  modalType: Modal | null = null;
+export class ModalStore {
+  modalProps: Modal | null = null;
 
   constructor() {
     makeAutoObservable(this);
   }
 
-  setModalType = (type: Modal | null ) => {
-    this.modalType = type;
+  setModalProps = (type: Modal | null) => {
+    this.modalProps = type;
   };
 }

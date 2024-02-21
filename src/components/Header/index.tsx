@@ -2,17 +2,24 @@ import { useStore } from "@mobx";
 
 import styles from "./styles.module.scss";
 
+import { SvgSwitcher } from "../SvgSwitcher";
+import { Dropdown, Button } from "../buttons";
+import { UserProfileBttn } from "../user";
 import { confMenu } from "./config";
 
-import { SvgSwitcher } from "../SvgSwitcher";
-import { Dropdown } from "../Dropdown";
-import { Button } from "../Button";
-
 export const Header = () => {
-  const { modalStore } = useStore();
-  const { setModalType } = modalStore;
+  const { modalStore, userStore } = useStore();
+  const { user } = userStore;
+  const { setModalProps } = modalStore;
 
   const bttn_text = "Sign In!";
+
+  // change
+  const userInfo = {
+    firstName: "Super",
+    lastName: "Admin",
+    id: 99,
+  };
 
   return (
     <div className={styles.container}>
@@ -22,15 +29,25 @@ export const Header = () => {
           <div className={styles.container_box_menu}>
             {confMenu.map(({ label, option }) => {
               return option ? (
-                <Dropdown label={label} option={option} />
+                <Dropdown variant={"white"} option={option}>
+                  {label}
+                  <SvgSwitcher variant={"arrow"} />
+                </Dropdown>
               ) : (
                 <Button variant={"white"}>{label}</Button>
               );
             })}
           </div>
-          <Button onClick={() => setModalType("login")} variant={"darkGreen"}>
-            {bttn_text}
-          </Button>
+          {userInfo ? (
+            <UserProfileBttn user={userInfo} />
+          ) : (
+            <Button
+              onClick={() => setModalProps("login")}
+              variant={"darkGreen"}
+            >
+              {bttn_text}
+            </Button>
+          )}
         </div>
       </div>
     </div>

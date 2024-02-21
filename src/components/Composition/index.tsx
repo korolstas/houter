@@ -1,28 +1,24 @@
-// import Image from "next/image";
-import Image, { StaticImageData } from "next/image";
+import Image from "next/image";
 
 import { compositionInfo } from "@pages/home/config";
+import { User } from "@types";
 
-import { SvgSwitcher } from "../SvgSwitcher";
-import { SliderPictureByOne } from "../sliders";
-import { UserCard } from "../UserCard";
 import styles from "./styles.module.scss";
+
+import { SliderPictureByOne } from "../sliders";
+import { SvgSwitcher } from "../SvgSwitcher";
+import { UserCard } from "../user";
 
 import image1 from "../../../public/img/home/Woodlandside.png";
 import image2 from "../../../public/img/home/TheOldLighthouse.png";
 import image3 from "../../../public/img/home/apartment_1.webp";
 
-interface CompositionProps {
+type CompositionProps = {
   descrioption: string;
-  user: {
-    image: StaticImageData;
-    location: string;
-    work: string;
-    name: string;
-  };
   header: string;
   top: string;
-}
+  user: User;
+};
 
 export const Composition = ({
   descrioption,
@@ -58,11 +54,9 @@ export const Composition = ({
         </div>
       </div>
       <SliderPictureByOne>
-        <>
-          <Image src={image1} alt="" />
-          <Image src={image2} alt="" />
-          <Image src={image3} alt="" />
-        </>
+        <Image src={image1} alt="" />
+        <Image src={image2} alt="" />
+        <Image src={image3} alt="" />
       </SliderPictureByOne>
     </div>
   );

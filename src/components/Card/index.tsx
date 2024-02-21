@@ -1,24 +1,21 @@
 import Image, { StaticImageData } from "next/image";
 
-import { Banner, BannerVariant } from "../Banner";
-import { UserCard } from "../UserCard";
+import { UserCard } from "../user";
+import { Banner } from "../Banner";
+
+import { BannerVariant, User } from "@types";
 
 import styles from "./styles.module.scss";
 
-interface Props {
+type CardProps = {
   image: StaticImageData;
   title: string;
   price: string;
-  user: {
-    image: StaticImageData;
-    location: string;
-    work: string;
-    name: string;
-  };
+  user: User;
   banner?: BannerVariant | string;
-}
+};
 
-export const Card = ({ image, title, price, user, banner }: Props) => {
+export const Card = ({ image, title, price, user, banner }: CardProps) => {
   return (
     <div className={styles.card}>
       <div className={styles.card_photo}>

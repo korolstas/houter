@@ -1,22 +1,25 @@
-import Image, { StaticImageData } from "next/image";
+import Image from "next/image";
+
+import { User } from "@types";
 
 import styles from "./styles.module.scss";
-import { Button } from "../Button";
-import { SvgSwitcher } from "../SvgSwitcher";
 
-interface Props {
-  user: {
-    image: StaticImageData;
-    location: string;
-    work: string;
-    name: string;
-  };
+import { SvgSwitcher } from "../../SvgSwitcher";
+import { Button } from "../../buttons";
+
+type UserCardProps = {
+  user: User;
   isContactNow?: boolean;
   isWho?: boolean;
   size?: number;
-}
+};
 
-export const UserCard = ({ user, size, isContactNow, isWho }: Props) => {
+export const UserCard = ({
+  user,
+  size,
+  isContactNow,
+  isWho,
+}: UserCardProps) => {
   return (
     <div className={styles.container}>
       <Image
@@ -31,10 +34,8 @@ export const UserCard = ({ user, size, isContactNow, isWho }: Props) => {
       </div>
       {isContactNow && (
         <Button variant={"common"}>
-          <>
-            <SvgSwitcher variant={"call"} />
-            Contact Now
-          </>
+          <SvgSwitcher variant={"call"} />
+          Contact Now
         </Button>
       )}
     </div>

@@ -1,15 +1,16 @@
-import { CSSProperties, MouseEventHandler, useState } from "react";
+import { CSSProperties, MouseEventHandler, ReactNode } from "react";
+
 import styles from "./styles.module.scss";
 
 type ButtonVariant = "white" | "darkGreen" | "common" | "secondary" | "arrow";
 
-interface ButtonProps {
-  children: string | JSX.Element;
+type ButtonProps = {
+  children: ReactNode;
   variant: ButtonVariant;
   onClick?: MouseEventHandler<HTMLButtonElement>;
   style?: CSSProperties;
   isActive?: boolean;
-}
+};
 
 export const Button = ({
   children,

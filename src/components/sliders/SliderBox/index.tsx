@@ -1,21 +1,22 @@
-import { CSSProperties, useRef } from "react";
+import { CSSProperties, ReactNode, useRef } from "react";
 import { observer } from "mobx-react-lite";
+
+import { useStore } from "@mobx";
 
 import { HorizontalScroll } from "../../HorizontalScroll";
 import { SvgSwitcher } from "../../SvgSwitcher";
-import { Button } from "../../Button";
+import { Button } from "../../buttons";
 
 import styles from "./styles.module.scss";
-import { useStore } from "@/mobx";
 
-interface SliderProps {
-  children: JSX.Element[];
+type SliderProps = {
+  children: ReactNode[];
   header: string;
   top: string;
 
   bttns?: { name: string }[];
   style?: CSSProperties;
-}
+};
 
 const SliderComponent = ({
   children,
@@ -25,12 +26,12 @@ const SliderComponent = ({
   top,
 }: SliderProps) => {
   const { sliderStore } = useStore();
-  const { bttnType, setBttnType } = sliderStore;
+  const { bttnProps, setBttnProps } = sliderStore;
 
   const sliderRef = useRef<HTMLDivElement | null>(null);
 
   const handlerSearch = (type: string) => {
-    setBttnType(type);
+    setBttnProps(type);
   };
 
   const handlerPrev = () => {
@@ -59,7 +60,7 @@ const SliderComponent = ({
             bttns.map(({ name }) => {
               return (
                 <Button
-                  isActive={bttnType === name ? true : false}
+                  isActive={bttnProps === name ? true : false}
                   onClick={() => handlerSearch(name)}
                   variant={"secondary"}
                 >
