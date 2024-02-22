@@ -21,7 +21,7 @@ import styles from "./styles.module.scss";
 
 const HomeComponent = () => {
   const { sliderStore } = useStore();
-  const { bttnProps } = sliderStore;
+  const { bttnType } = sliderStore;
 
   return (
     <>
@@ -64,7 +64,7 @@ const HomeComponent = () => {
           bttns={bttns}
         >
           {cards
-            .filter(({ type }) => type === bttnProps)
+            .filter(({ type }) => type === bttnType)
             .map(({ image, title, price, user, banner }) => {
               return (
                 <Card

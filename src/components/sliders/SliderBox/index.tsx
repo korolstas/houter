@@ -26,12 +26,12 @@ const SliderComponent = ({
   top,
 }: SliderProps) => {
   const { sliderStore } = useStore();
-  const { bttnProps, setBttnProps } = sliderStore;
+  const { bttnType, setBttnType } = sliderStore;
 
   const sliderRef = useRef<HTMLDivElement | null>(null);
 
   const handlerSearch = (type: string) => {
-    setBttnProps(type);
+    setBttnType(type);
   };
 
   const handlerPrev = () => {
@@ -60,14 +60,12 @@ const SliderComponent = ({
             bttns.map(({ name }) => {
               return (
                 <Button
-                  isActive={bttnProps === name ? true : false}
+                  isActive={bttnType === name ? true : false}
                   onClick={() => handlerSearch(name)}
                   variant={"secondary"}
                 >
-                  <>
-                    <SvgSwitcher variant={name.toLowerCase()} />
-                    {name}
-                  </>
+                  <SvgSwitcher variant={name.toLowerCase()} />
+                  {name}
                 </Button>
               );
             })}

@@ -1,13 +1,23 @@
 import { makeAutoObservable } from "mobx";
 
+type User = {
+  firstName: string;
+  lastName: string;
+  id: string | number;
+};
+
 export class UserStore {
-  user: any = null;
+  user: User | null = null;
 
   constructor() {
     makeAutoObservable(this);
   }
 
-  setUser = (user: any) => {
+  setUser = (user: User) => {
     this.user = user;
+  };
+
+  clearUser = () => {
+    this.user = null;
   };
 }

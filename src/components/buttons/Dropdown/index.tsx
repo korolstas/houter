@@ -2,6 +2,8 @@ import { ReactNode } from "react";
 
 import styles from "./styles.module.scss";
 import { SvgSwitcher } from "@components";
+import { useStore } from "@mobx";
+import Link from "next/link";
 
 type DropdownVariantType = "green" | "white";
 
@@ -13,9 +15,23 @@ type DropdownProps = {
     href: string;
     svg?: string;
   }[];
+  onClick?: () => void;
 };
 
-export const Dropdown = ({ option, children, variant }: DropdownProps) => {
+export const Dropdown = ({
+  children,
+  variant,
+  option,
+  onClick,
+}: DropdownProps) => {
+  const handlerClick = (value: string) => {
+    switch (value) {
+      case "logout": {
+        return onClick && onClick();
+      }
+    }
+  };
+
   return (
     <div className={`${styles.dropdown} ${styles[variant]}`}>
       <button className={`${styles.radius} ${styles.bttn} ${styles[variant]}`}>
@@ -24,10 +40,15 @@ export const Dropdown = ({ option, children, variant }: DropdownProps) => {
       <div className={`${styles.dropdownMenu} ${styles[variant]}`}>
         {option.map(({ name, href, svg }) => {
           return (
-            <a key={name} href={href} className={styles[name.toLowerCase()]}>
+            <Link
+              className={styles[name.toLowerCase()]}
+              onClick={() => handlerClick(name.toLowerCase())}
+              href={href}
+              key={name}
+            >
               <SvgSwitcher variant={svg || name.toLowerCase()} />
               {name}
-            </a>
+            </Link>
           );
         })}
       </div>

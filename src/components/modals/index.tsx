@@ -8,10 +8,10 @@ import { Login } from "./variants";
 
 const ModalComponent = () => {
   const { modalStore } = useStore();
-  const { modalProps, setModalProps } = modalStore;
+  const { modalType, setModalType } = modalStore;
 
   const getModalElement = () => {
-    switch (modalProps) {
+    switch (modalType) {
       case "login":
         return <Login />;
       default:
@@ -20,9 +20,9 @@ const ModalComponent = () => {
   };
 
   return (
-    <div className={`modal_container ${modalProps ? "active" : null}`}>
+    <div className={`modal_container ${modalType ? "active" : null}`}>
       <div className="modal">
-        <button onClick={() => setModalProps(null)} className="modal_close" />
+        <button onClick={() => setModalType(null)} className="modal_close" />
         {getModalElement()}
       </div>
     </div>

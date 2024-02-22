@@ -1,13 +1,13 @@
 import { makeAutoObservable } from "mobx";
 
 export class SliderStore {
-  bttnProps: string = "House";
+  bttnType: string = "House";
 
   constructor() {
     makeAutoObservable(this);
   }
 
-  setBttnProps = (type: string) => {
-    this.bttnProps = type;
+  setBttnType = (type: string) => {
+    this.bttnType = type;
   };
 }

@@ -1,9 +1,24 @@
 import { useState } from "react";
+import Link from "next/link";
+
+import { useStore } from "@mobx";
 
 import "./styles.scss";
 
 export const Login = () => {
+  const { userStore, modalStore } = useStore();
+  const { setUser } = userStore;
+  const { setModalType } = modalStore;
   const [isActive, setIsActive] = useState<boolean>(false);
+
+  const handleSignIn = () => {
+    setModalType(null);
+    setUser({
+      firstName: "Super",
+      lastName: "Admin",
+      id: 99,
+    });
+  };
 
   return (
     <div className={`container ${isActive ? "active" : null}`}>
@@ -13,7 +28,7 @@ export const Login = () => {
           <input type="text" placeholder="Name*" required />
           <input type="email" placeholder="Email*" required />
           <input type="password" placeholder="Password*" required />
-          <button>Sign Up</button>
+          <button onClick={handleSignIn}>Sign Up</button>
         </form>
       </div>
       <div className="form-container sign-in">
@@ -21,8 +36,8 @@ export const Login = () => {
           <h1>Sign In</h1>
           <input type="email" placeholder="Email*" required />
           <input type="password" placeholder="Password*" required />
-          <a href="#">Forget Your Password?</a>
-          <button>Sign In</button>
+          <Link href="#">Forget Your Password?</Link>
+          <button onClick={handleSignIn}>Sign In</button>
         </form>
       </div>
       <div className="toggle-container">
