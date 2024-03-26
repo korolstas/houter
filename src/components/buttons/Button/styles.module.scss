@@ -18,12 +18,13 @@
   background: $backgroundGreenLight;
   color: $textGreen;
   border: none;
-  transition: all 0.3s linear;
+  transition: all 0.3s ease;
+  height: max-content;
 
   &:hover {
-    cursor: pointer;
-    background: $textGreen;
-    color: $backgroundGreenLight;
+    cursor: pointer !important;
+    background: $textGreen !important;
+    color: $backgroundGreenLight !important;
   }
 }
 
@@ -40,35 +41,38 @@
   background: rgba(255, 255, 255, 0.1);
   gap: 0.625rem;
   padding: 0.5rem 1rem;
-  transition: all 0.2s linear;
+  transition: all 0.3s ease;
 
   svg {
-    transform: rotate(90deg);
-    height: 18px;
+    transform: rotate(90deg) !important;
+    height: 18px !important;
     path {
-      transition: all 0.2s linear;
+      transition: all 0.3s ease;
     }
   }
 
   &:hover + .popup_list {
-    display: flex;
+    display: flex !important;
   }
 
   &:hover {
-    cursor: pointer;
-    color: $text;
-    border: 1px solid $text;
+    cursor: pointer !important;
+    color: $text !important;
+    border: 1px solid $text !important;
+    background: rgba(255, 255, 255, 0.1) !important;
 
     svg {
       path {
-        fill: $text;
+        fill: $text !important;
       }
     }
   }
 }
 
 .common {
+  display: flex;
   justify-content: center;
+  align-items: center;
   font-family: Lexend;
   font-size: 14px;
   font-weight: 600;
@@ -79,26 +83,26 @@
   background-color: $backgroundGreen;
   width: 110px;
   height: 48px;
-  padding: 12px, 16px, 12px, 16px;
+  padding: 12px, 16px, 12px, 16px !important;
   gap: 4px;
   border: 1px solid $backgroundGreen;
-  transition: all 0.2s linear;
+  transition: all 0.3s ease;
   outline: none;
 
   svg {
     path {
-      transition: all 0.2s linear;
+      transition: all 0.3s ease;
     }
   }
 
   &:hover {
-    background: $backgroundGreenLight;
-    color: $backgroundGreen;
-    cursor: pointer;
+    background: $backgroundGreenLight !important;
+    color: $backgroundGreen !important;
+    cursor: pointer !important;
 
     svg {
       path {
-        fill: $backgroundGreen;
+        fill: $backgroundGreen !important;
       }
     }
   }
@@ -122,24 +126,24 @@
   padding: 24px 14px;
   gap: 4px;
   border: 1px solid $backgroundGray;
-  transition: all 0.2s linear;
+  transition: all 0.3s ease;
 
   svg {
     path {
-      fill: $textGray;
-      transition: all 0.2s linear;
+      fill: $textGray !important;
+      transition: all 0.3s ease;
     }
   }
 
   &:hover {
-    background: $backgroundGreenLight;
-    color: $backgroundGreen;
-    border: 1px solid $backgroundGreen;
+    background: $backgroundGreenLight !important;
+    color: $backgroundGreen !important;
+    border: 1px solid $backgroundGreen !important;
     cursor: pointer;
 
     svg {
       path {
-        fill: $backgroundGreen;
+        fill: $backgroundGreen !important;
       }
     }
   }
@@ -184,23 +188,23 @@
   height: 52px;
   padding: 16px 12px;
   border: 1px solid $backgroundGray;
-  transition: all 0.2s linear;
+  transition: all 0.3s ease;
 
   svg {
     path {
       fill: $text;
-      transition: all 0.2s linear;
+      transition: all 0.3s ease;
     }
   }
 
   &:hover {
-    background: $backgroundGreen;
-    border: 1px solid $backgroundGreen;
+    background: $backgroundGreen !important;
+    border: 1px solid $backgroundGreen !important;
     cursor: pointer;
 
     svg {
       path {
-        fill: white;
+        fill: white !important;
       }
     }
   }

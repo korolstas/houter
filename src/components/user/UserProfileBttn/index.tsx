@@ -1,7 +1,14 @@
+import { MenuProps } from "antd";
+import {
+  PoweroffOutlined,
+  SolutionOutlined,
+  ShopOutlined,
+} from "@ant-design/icons";
+
 import { Dropdown } from "@components";
+import { useStore } from "@mobx";
 
 import { CustomAvatar } from "../CustomAvatar";
-import { useStore } from "@mobx";
 
 type UserProfileBttnProps = {
   user: any;
@@ -11,24 +18,39 @@ export const UserProfileBttn = ({ user }: UserProfileBttnProps) => {
   const { userStore } = useStore();
   const { clearUser } = userStore;
 
-  const option = [
+  const items: MenuProps["items"] = [
     {
-      name: "Profile",
-      href: "",
+      key: 1,
+      label: (
+        <a rel="profile" href="">
+          Profile
+        </a>
+      ),
+      icon: <SolutionOutlined style={{ fontSize: "20px" }} />,
     },
     {
-      name: "My Properties",
-      svg: "properties",
-      href: "",
+      key: 2,
+      label: (
+        <a rel="my-properties" href="">
+          My Properties
+        </a>
+      ),
+      icon: <ShopOutlined style={{ fontSize: "20px" }} />,
     },
     {
-      name: "Logout",
-      href: "",
+      key: 3,
+      label: (
+        <a onClick={clearUser} rel="Logout" href="/">
+          Logout
+        </a>
+      ),
+      icon: <PoweroffOutlined style={{ fontSize: "20px" }} />,
+      danger: true,
     },
   ];
 
   return (
-    <Dropdown onClick={clearUser} variant={"green"} option={option}>
+    <Dropdown variant={"green"} items={items} overlayClassName={"green"}>
       <CustomAvatar
         firstName={user.firstName}
         lastName={user.lastName}

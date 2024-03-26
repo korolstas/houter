@@ -1,3 +1,4 @@
+import { useForm } from "react-hook-form";
 import { useState } from "react";
 import Link from "next/link";
 
@@ -5,13 +6,23 @@ import { useStore } from "@mobx";
 
 import "./styles.scss";
 
+type FormData = {
+  email: string;
+  password: string;
+};
+
 export const Login = () => {
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<FormData>();
   const { userStore, modalStore } = useStore();
   const { setUser } = userStore;
   const { setModalType } = modalStore;
   const [isActive, setIsActive] = useState<boolean>(false);
 
-  const handleSignIn = () => {
+  const onSubmit = () => {
     setModalType(null);
     setUser({
       firstName: "Super",
@@ -28,16 +39,39 @@ export const Login = () => {
           <input type="text" placeholder="Name*" required />
           <input type="email" placeholder="Email*" required />
           <input type="password" placeholder="Password*" required />
-          <button onClick={handleSignIn}>Sign Up</button>
+          <button onClick={onSubmit}>Sign Up</button>
         </form>
       </div>
       <div className="form-container sign-in">
-        <form>
+        <form onSubmit={handleSubmit(onSubmit)}>
           <h1>Sign In</h1>
-          <input type="email" placeholder="Email*" required />
-          <input type="password" placeholder="Password*" required />
+          <input
+            placeholder="Email*"
+            style={{ border: errors.email && "1px solid red" }}
+            {...register("email", {
+              required: "This field should be filled",
+              pattern: {
+                value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i,
+                message: "Invalid email format",
+              },
+            })}
+          />
+          <div className="error">{errors.email && errors.email.message}</div>
+          <input
+            placeholder="Password*"
+            type="password"
+            style={{ border: errors.password && "1px solid red" }}
+            {...register("password", {
+              required: "This field should be filled",
+              minLength: 5,
+            })}
+          />
+          <div className="error">
+            {errors.password && errors.password.message}
+          </div>
+
           <Link href="#">Forget Your Password?</Link>
-          <button onClick={handleSignIn}>Sign In</button>
+          <button type="submit">Sign In</button>
         </form>
       </div>
       <div className="toggle-container">
@@ -63,23 +97,3 @@ export const Login = () => {
     </div>
   );
 };
-
-{
-  /* <div className="social-icons">
-            <a href="#" className="icon">
-              <i className="fa-brands fa-google-plus-g"></i>
-            </a>
-            <a href="#" className="icon">
-              <i className="fa-brands fa-facebook-f"></i>
-            </a>
-            <a href="#" className="icon">
-              <i className="fa-brands fa-github"></i>
-            </a>
-            <a href="#" className="icon">
-              <i className="fa-brands fa-linkedin-in"></i>
-            </a>
-          </div> */
-}
-{
-  /* <span>or use your email for registeration</span> */
-}

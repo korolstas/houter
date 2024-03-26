@@ -10,19 +10,5 @@ export const confMenu = [
   {
     label: "Property",
     href: "/",
-    option: [
-      {
-        name: "House",
-        href: "/",
-      },
-      {
-        name: "Villa",
-        href: "/",
-      },
-      {
-        name: "Apartment",
-        href: "/",
-      },
-    ],
   },
 ];

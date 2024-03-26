@@ -22,6 +22,7 @@
       "@styles/*": ["./src/assets/styles/*"],
       "@components": ["./src/components"],
       "@image": ["./public/img"],
+      "@image*": ["./public/img/*"],
       "@mobx": ["./src/mobx"],
       "@types": ["./src/types.ts"],
       "@pages/*": ["./src/pages/*"],

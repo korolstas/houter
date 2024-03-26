@@ -8,6 +8,11 @@ type User = {
 
 export class UserStore {
   user: User | null = null;
+  // user: User | null = {
+  //   firstName: "Admin",
+  //   lastName: "Stas",
+  //   id: 111,
+  // };
 
   constructor() {
     makeAutoObservable(this);
