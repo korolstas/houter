@@ -21,11 +21,12 @@
     "paths": {
       "@styles/*": ["./src/assets/styles/*"],
       "@components": ["./src/components"],
-      "@image": ["./public/img"],
+      "@screens/*": ["./src/screens/*"],
       "@image*": ["./public/img/*"],
-      "@mobx": ["./src/mobx"],
+      "@image": ["./public/img"],
       "@types": ["./src/types.ts"],
-      "@pages/*": ["./src/pages/*"],
+      "@stores": ["./src/stores"],
+      "@api*": ["./src/api"],
       "@/*": ["./src/*"]
     }
   },

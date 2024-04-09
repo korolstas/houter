@@ -1,6 +1,6 @@
 import { observer } from "mobx-react-lite";
 
-import { useStore } from "@mobx";
+import { useStore } from "@stores";
 
 import "./modal.scss";
 

@@ -2,7 +2,7 @@ import { useForm } from "react-hook-form";
 import { useState } from "react";
 import Link from "next/link";
 
-import { useStore } from "@mobx";
+import { useStore } from "@stores";
 
 import "./styles.scss";
 

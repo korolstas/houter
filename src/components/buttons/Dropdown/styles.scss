@@ -13,9 +13,9 @@
   margin: 0 !important;
 }
 
-.white.ant-dropdown .ant-dropdown-menu {
-  border: 1px solid rgba(255, 255, 255, 0.3);
-  background: rgba(255, 255, 255, 0.1);
+.dark.ant-dropdown .ant-dropdown-menu {
+  border: 1px solid $text;
+  background: rgba($text, 0.3);
 }
 
 .green.ant-dropdown .ant-dropdown-menu {
@@ -77,12 +77,12 @@
   }
 }
 
-.white {
+.dark {
   .ant-dropdown-menu-title-content {
-    color: #fff;
+    color: $text;
 
     &:hover {
-      color: $text;
+      color: $textWhite;
     }
   }
 
@@ -100,7 +100,7 @@
 
       svg {
         path {
-          fill: $textWhite;
+          fill: $text;
           transition: all 0.3s ease;
         }
       }
@@ -110,7 +110,7 @@
       a {
         svg {
           path {
-            fill: $text;
+            fill: $textWhite;
           }
         }
       }
@@ -143,13 +143,13 @@
     }
   }
 
-  &.white {
-    color: $textWhite !important;
+  &.dark {
+    color: $text !important;
     font-size: 14px;
     line-height: 17.5px;
     font-weight: 600;
     text-transform: capitalize;
-    border: 1px solid rgba(255, 255, 255, 0.3);
+    border: 1px solid $text;
     background: rgba(255, 255, 255, 0.1);
     padding: 0.5rem 1.5rem;
 
@@ -158,19 +158,19 @@
       height: 18px;
 
       path {
+        fill: $text;
         transition: all 0.3s ease;
       }
     }
 
     &:hover {
-      color: $text !important;
-      background: rgba(255, 255, 255, 0.1) !important;
+      color: $textWhite !important;
+      background: $text !important;
       border: 1px solid $text !important;
 
       svg {
         path {
-          fill: $text;
-          transition: all 0.3s ease;
+          fill: $textWhite;
         }
       }
     }

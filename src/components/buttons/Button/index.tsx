@@ -1,9 +1,9 @@
 import { CSSProperties, MouseEventHandler, ReactNode } from "react";
-import { Button as AntdButton } from "antd";
+import { Button as AntdButton, ConfigProvider } from "antd";
 
 import styles from "./styles.module.scss";
 
-type ButtonVariant = "white" | "darkGreen" | "common" | "secondary" | "arrow";
+type ButtonVariant = "dark" | "darkGreen" | "common" | "secondary" | "arrow";
 
 type ButtonProps = {
   children: ReactNode;
@@ -26,16 +26,34 @@ export const Button = ({
 }: ButtonProps) => {
   const classNames = isActive ? `${variant}_active` : variant;
 
+  const color = {
+    dark: "#1b1c57",
+    darkGreen: "none",
+    common: "none",
+    secondary: "none",
+    arrow: "none",
+  };
+
   return (
-    <AntdButton
-      icon={icon}
-      type="primary"
-      className={`${styles.radius} ${styles[classNames]}`}
-      onClick={onClick}
-      style={style}
-      href={href}
+    <ConfigProvider
+      theme={{
+        components: {
+          Button: {
+            colorPrimaryActive: variant ? color[variant] : "none",
+          },
+        },
+      }}
     >
-      {children}
-    </AntdButton>
+      <AntdButton
+        icon={icon}
+        type="primary"
+        className={`${styles.radius} ${styles[classNames]}`}
+        onClick={onClick}
+        style={style}
+        href={href}
+      >
+        {children}
+      </AntdButton>
+    </ConfigProvider>
   );
 };

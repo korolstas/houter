@@ -1,0 +1,66 @@
+@import "../../assets/styles/variables.scss";
+
+.footer {
+  display: flex;
+  justify-content: space-between;
+  padding: 100px 120px;
+  background-color: $backgroundGreenLight;
+
+  &_logo {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    width: 330px;
+
+    &_text {
+      font-family: Lexend;
+      font-size: 14px;
+      font-weight: 400;
+      line-height: 24px;
+      text-align: left;
+      color: $textMuted;
+    }
+
+    &_pictures {
+      display: flex;
+      gap: 24px;
+      font-size: 25px;
+      color: $textDarkenGrey;
+    }
+  }
+
+  &_info {
+    display: flex;
+    gap: 90px;
+
+    &_box {
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+
+      label {
+        font-family: Lexend;
+        font-size: 18px;
+        font-weight: 600;
+        line-height: 22.5px;
+        text-align: left;
+        color: $text;
+      }
+
+      &_items {
+        display: flex;
+        flex-direction: column;
+        gap: 18px;
+
+        .item {
+          font-family: Lexend;
+          font-size: 14px;
+          font-weight: 400;
+          line-height: 17.5px;
+          text-align: left;
+          color: $textMuted;
+        }
+      }
+    }
+  }
+}

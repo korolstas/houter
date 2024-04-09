@@ -1,9 +1,9 @@
-import { Button, Dropdown as AntdDropdown } from "antd";
+import { Button, Dropdown as AntdDropdown, ConfigProvider } from "antd";
 import { ReactNode } from "react";
 
 import "./styles.scss";
 
-type DropdownVariantType = "green" | "white";
+type DropdownVariantType = "green" | "dark";
 
 type DropdownProps = {
   variant: DropdownVariantType;
@@ -20,14 +20,29 @@ export const Dropdown = ({
   icon,
   overlayClassName,
 }: DropdownProps) => {
+  const color = {
+    dark: "#1b1c57",
+    green: "none",
+  };
+
   return (
-    <AntdDropdown
-      className={`radius bttn ${variant}`}
-      placement="bottom"
-      menu={{ items }}
-      overlayClassName={overlayClassName}
+    <ConfigProvider
+      theme={{
+        components: {
+          Dropdown: {
+            colorPrimaryActive: variant ? color[variant] : "none",
+          },
+        },
+      }}
     >
-      <Button icon={icon}>{children}</Button>
-    </AntdDropdown>
+      <AntdDropdown
+        className={`radius bttn ${variant}`}
+        placement="bottom"
+        menu={{ items }}
+        overlayClassName={overlayClassName}
+      >
+        <Button icon={icon}>{children}</Button>
+      </AntdDropdown>
+    </ConfigProvider>
   );
 };

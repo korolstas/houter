@@ -1,12 +1,14 @@
-@import "../../assets/styles/variables.scss";
+@import "../../../assets/styles/variables.scss";
 
 .container {
-  position: absolute;
+  position: fixed;
   top: 0;
   left: 50%;
   z-index: 100;
   transform: translate(-50%, 0);
-  margin: 40px 0 0 0;
+  padding: 20px 0;
+  background-color: rgb($textWhite, 0.3);
+  backdrop-filter: blur(10px);
 
   .header {
     display: flex;

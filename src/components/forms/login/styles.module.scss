@@ -1,0 +1,134 @@
+@import "../../../assets/styles/variables.scss";
+
+.login {
+  width: 100%;
+
+  .name {
+    display: flex;
+    gap: 15px;
+  }
+
+  .form_item {
+    margin-bottom: 0 !important;
+  }
+
+  span {
+    input {
+      font-family: Lexend;
+      font-weight: 400;
+      color: $text;
+
+      &::-webkit-input-placeholder {
+        /* WebKit browsers */
+        color: $textGray;
+      }
+      &:-moz-placeholder {
+        /* Mozilla Firefox 4 to 18 */
+        color: $textGray;
+      }
+      &::-moz-placeholder {
+        /* Mozilla Firefox 19+ */
+        color: $textGray;
+      }
+      &:-ms-input-placeholder {
+        /* Internet Explorer 10+ */
+        color: $textGray;
+      }
+    }
+  }
+
+  .placeholder {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-family: Lexend;
+    font-weight: 400;
+    font-size: 18px;
+    color: $text;
+
+    a {
+      color: $textMuted;
+      font-family: Lexend;
+      font-weight: 500;
+      font-size: 13px;
+      text-decoration: none;
+      transition: all 0.3s ease-in-out;
+
+      &:hover {
+        color: $text;
+      }
+    }
+
+    .form_item {
+      display: flex;
+      justify-content: space-between;
+      width: 100%;
+    }
+
+    .checkbox {
+      font-family: Lexend;
+      font-weight: 400;
+      color: $text;
+      margin-bottom: 0 !important;
+    }
+  }
+
+  .button {
+    display: flex;
+    gap: 6px;
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+    flex-direction: row-reverse;
+    font-family: Lexend;
+    font-weight: 400;
+    font-size: 18px;
+    color: $backgroundGreenLight;
+    padding: 20px 0;
+
+    &:hover {
+      color: $backgroundGreen;
+    }
+  }
+}
+
+.form {
+  width: 100%;
+
+  .avatar {
+    font-family: Lexend;
+    font-weight: 400;
+    font-size: 14px;
+    color: $text;
+
+    .form_item {
+      margin-bottom: 14px !important;
+    }
+
+    input {
+      font-family: Lexend;
+      font-size: 14px;
+    }
+
+    &_box {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+    }
+
+    .date {
+      width: 100%;
+    }
+
+    .button {
+      display: flex;
+      gap: 10px;
+      align-items: center;
+      margin-bottom: 0 !important;
+      font-family: Lexend;
+      font-weight: 400;
+      font-size: 14px;
+      padding: 15px 10px;
+    }
+  }
+}

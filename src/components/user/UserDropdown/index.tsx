@@ -1,4 +1,5 @@
 import { MenuProps } from "antd";
+import Link from "next/link";
 import {
   PoweroffOutlined,
   SolutionOutlined,
@@ -6,43 +7,35 @@ import {
 } from "@ant-design/icons";
 
 import { Dropdown } from "@components";
-import { useStore } from "@mobx";
+import { useStore } from "@stores";
 
 import { CustomAvatar } from "../CustomAvatar";
 
-type UserProfileBttnProps = {
+type UserDropdownProps = {
   user: any;
 };
 
-export const UserProfileBttn = ({ user }: UserProfileBttnProps) => {
+export const UserDropdown = ({ user }: UserDropdownProps) => {
   const { userStore } = useStore();
   const { clearUser } = userStore;
 
   const items: MenuProps["items"] = [
     {
       key: 1,
-      label: (
-        <a rel="profile" href="">
-          Profile
-        </a>
-      ),
+      label: <Link href="/profile">Profile</Link>,
       icon: <SolutionOutlined style={{ fontSize: "20px" }} />,
     },
     {
       key: 2,
-      label: (
-        <a rel="my-properties" href="">
-          My Properties
-        </a>
-      ),
+      label: <Link href="/properties">My Properties</Link>,
       icon: <ShopOutlined style={{ fontSize: "20px" }} />,
     },
     {
       key: 3,
       label: (
-        <a onClick={clearUser} rel="Logout" href="/">
+        <Link onClick={clearUser} href="/">
           Logout
-        </a>
+        </Link>
       ),
       icon: <PoweroffOutlined style={{ fontSize: "20px" }} />,
       danger: true,

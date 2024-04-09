@@ -1,19 +1,27 @@
+"use client";
+
+import { usePathname } from "next/navigation";
+import { ReactNode } from "react";
+
+import { Header, Footer } from "@components";
+
 import "@styles/global.scss";
 
-import type { Metadata } from "next";
-
-export const metadata: Metadata = {
-  title: "Hounter",
-};
-
 type Props = {
-  children: React.ReactNode;
+  children: ReactNode;
 };
 
 export default function RootLayout({ children }: Props) {
+  const pathname = usePathname();
+  const isHiden = pathname !== "/auth/login" && pathname !== "/auth/signup";
+
   return (
     <html lang="en">
-      <body>{children}</body>
+      <body>
+        {isHiden && <Header />}
+        {children}
+        {isHiden && <Footer />}
+      </body>
     </html>
   );
 }

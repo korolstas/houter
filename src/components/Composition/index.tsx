@@ -1,6 +1,6 @@
 import Image from "next/image";
 
-import { compositionInfo } from "@pages/home/config";
+import { compositionInfo } from "@screens/home/config";
 import { User } from "@types";
 
 import styles from "./styles.module.scss";

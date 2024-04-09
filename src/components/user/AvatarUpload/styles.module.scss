@@ -1,0 +1,30 @@
+@import "../../../assets/styles/variables.scss";
+
+.center {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.avatar {
+  height: 130px;
+  width: 130px;
+  border-radius: 75px;
+  border: 2px dashed $textMuted;
+
+  &_box {
+    gap: 5px;
+    font-family: Lexend;
+    font-size: 14px;
+    color: $textGray;
+
+    svg {
+      font-size: 26px;
+
+      path {
+        fill: $textGray;
+      }
+    }
+  }
+}
