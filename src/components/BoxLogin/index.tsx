@@ -1,3 +1,4 @@
+import { ArrowLeftOutlined } from "@ant-design/icons";
 import { Button, Carousel } from "antd";
 import { ReactNode } from "react";
 import Image from "next/image";
@@ -5,7 +6,6 @@ import Image from "next/image";
 import styles from "./styles.module.scss";
 
 import { carousel } from "./config";
-import { ArrowLeftOutlined } from "@ant-design/icons";
 
 type BoxLoginType = {
   form: ReactNode;
@@ -38,10 +38,11 @@ export const BoxLogin = ({ form, banner, heading }: BoxLoginType) => {
               return (
                 <div className={styles.photo_box}>
                   <Image
-                    loading="lazy"
                     className={styles.photo_box_img}
                     src={image}
                     alt={alt}
+                    key={alt}
+                    loading="lazy"
                   />
                 </div>
               );

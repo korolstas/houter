@@ -22,7 +22,7 @@ const HeaderComponent = () => {
     {
       key: 1,
       label: (
-        <Link rel="houses" href="houses">
+        <Link href="property?realty=house">
           <SvgSwitcher variant={"house"} />
           Houses
         </Link>
@@ -31,7 +31,7 @@ const HeaderComponent = () => {
     {
       key: 2,
       label: (
-        <Link rel="villas" href="villas">
+        <Link href="property?realty=villa">
           <SvgSwitcher variant={"villa"} />
           Villas
         </Link>
@@ -40,7 +40,7 @@ const HeaderComponent = () => {
     {
       key: 3,
       label: (
-        <Link rel="apartments" href="apartments">
+        <Link href="property?realty=apartment">
           <SvgSwitcher variant={"apartment"} />
           Apartments
         </Link>
@@ -52,19 +52,21 @@ const HeaderComponent = () => {
     <ScrollHeader>
       <div className={styles.container}>
         <div className={styles.header}>
-          <Link href={"/"}>
-            <SvgSwitcher variant={"logo"} />
-          </Link>
+          <div className={styles.link}>
+            <Link href={"/"}>
+              <SvgSwitcher variant={"logo"} />
+            </Link>
+          </div>
           <div className={styles.container_box}>
             <div className={styles.container_box_menu}>
               {confMenu.map(({ label }) => {
                 return label.toLocaleLowerCase() === "property" ? (
                   <Dropdown
                     icon={<SvgSwitcher variant={"arrow"} />}
+                    overlayClassName={"dark"}
                     variant={"dark"}
                     items={items}
                     key={label}
-                    overlayClassName={"dark"}
                   >
                     {label}
                   </Dropdown>

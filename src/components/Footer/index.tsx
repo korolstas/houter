@@ -46,18 +46,20 @@ export const Footer = () => {
       <div className={styles.footer_info}>
         {info.map(({ name, links, contacts }) => {
           return (
-            <div className={styles.footer_info_box}>
+            <div key={name} className={styles.footer_info_box}>
               <label>{name}</label>
               <div className={styles.footer_info_box_items}>
                 {links &&
                   links.map((item) => (
-                    <Link className={styles.item} href="/">
+                    <Link key={item} className={styles.item} href="/">
                       {item}
                     </Link>
                   ))}
                 {contacts &&
                   contacts.map((item) => (
-                    <div className={styles.item}>{item}</div>
+                    <div key={item} className={styles.item}>
+                      {item}
+                    </div>
                   ))}
               </div>
             </div>

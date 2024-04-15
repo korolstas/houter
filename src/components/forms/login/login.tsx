@@ -1,4 +1,4 @@
-import { Button, Checkbox, Form, Input, message } from "antd";
+import { Button, Checkbox, Form, Input } from "antd";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 import {
@@ -24,7 +24,6 @@ export const FormLogin = () => {
   const { setUser } = userStore;
 
   const onFinish = (data: FormLogin) => {
-    // message.success("Login successfully");
     setUser({
       id: 99,
       firstName: "Super",

@@ -1,0 +1,40 @@
+@import "../../../assets/styles/variables.scss";
+
+.favorite {
+  position: absolute;
+  top: 5%;
+  right: 5%;
+  display: flex;
+  width: max-content;
+  height: max-content;
+  align-items: center;
+  background-color: white;
+  padding: 5px;
+  border-radius: 5px;
+  font-size: 20px;
+}
+
+.outlined {
+  transition: 0.4s all ease;
+
+  svg {
+    path {
+      fill: $text;
+    }
+  }
+  &:hover {
+    svg {
+      path {
+        fill: $textPink;
+      }
+    }
+  }
+}
+
+.filled {
+  svg {
+    path {
+      fill: $textPink;
+    }
+  }
+}

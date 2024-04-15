@@ -1,0 +1,63 @@
+@import "../../assets/styles/variables.scss";
+
+.page {
+  // border: 1px solid $textMuted;
+  border-radius: 25px;
+
+  &_title {
+    color: $text;
+    padding: 10px 20px;
+    border-bottom: 1px solid $textMuted;
+  }
+
+  &_box {
+    display: flex;
+
+    &_filters {
+      width: 30%;
+    }
+
+    &_properties {
+      display: flex;
+      justify-content: center;
+      flex-direction: column;
+      width: 70%;
+      padding: 10px 20px;
+      height: max-content;
+      border-left: 1px solid $textMuted;
+
+      .search {
+        display: flex;
+        justify-content: center;
+        width: 100%;
+
+        &_input {
+          width: 50%;
+
+          input {
+            font-family: Lexend;
+            color: $text;
+          }
+        }
+      }
+
+      &_items {
+        padding: 20px;
+        width: 100%;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: flex-start;
+        align-items: center;
+        gap: 25px;
+      }
+    }
+  }
+}
+
+.display {
+  display: flex;
+  flex-direction: column;
+  height: max-content;
+  width: 100%;
+  padding: 100px 6vw;
+}

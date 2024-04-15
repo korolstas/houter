@@ -7,22 +7,30 @@
   z-index: 100;
   transform: translate(-50%, 0);
   padding: 20px 0;
-  background-color: rgb($textWhite, 0.3);
-  backdrop-filter: blur(10px);
+  background-color: rgb(#ffffff, 0.5);
+  backdrop-filter: blur(5px);
+  border-bottom: 1px solid $textGray;
 
   .header {
     display: flex;
     align-items: center;
     justify-content: space-between;
     width: 100vw;
-    padding: 0 6vw;
+  }
+
+  .link {
+    display: flex;
+    width: 50%;
+    justify-content: space-between;
+    padding: 0 0 0 6vw;
   }
 
   &_box {
-    width: 38vw;
+    width: 50%;
     display: flex;
     align-items: center;
     justify-content: space-between;
+    padding: 0 6vw;
 
     &_menu {
       display: flex;
@@ -30,31 +38,6 @@
       gap: 1.5rem;
       width: max-content;
       justify-content: space-between;
-    }
-  }
-}
-
-.popup_list {
-  display: flex;
-  flex-direction: column;
-  position: absolute;
-  top: 89%;
-  left: 65vw;
-  z-index: 100; /* Устанавливаем высокий z-index для отображения списка поверх других элементов */
-  background-color: rgba(255, 255, 255, 0.1);
-  padding: 10px;
-  border: 1px solid $text;
-  border-radius: 5px;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-  width: 115px;
-
-  a {
-    font-family: Lexend;
-    color: $text;
-
-    &:hover {
-      border-radius: 5px;
-      background-color: $textWhite;
     }
   }
 }

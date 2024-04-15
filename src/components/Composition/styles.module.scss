@@ -2,12 +2,15 @@
 
 .container {
   display: flex;
-  margin: 0 6vw;
   justify-content: space-between;
+  // align-items: center;
+  margin: 0 85px 120px 85px;
 }
 
 .desc {
+  margin: 20px 0;
   max-width: 50%;
+
   &_top {
     position: relative;
     padding-left: 40px;
@@ -67,6 +70,7 @@
 
   &_detail {
     margin-top: 16px;
+
     &_header {
       font-family: Lexend;
       font-size: 16px;
@@ -97,6 +101,23 @@
         text-align: left;
         color: $textDarkenGrey;
       }
+    }
+  }
+}
+
+.carousel {
+  width: 50%;
+  display: flex;
+  justify-content: center;
+
+  &_item {
+    width: 400px;
+    border-radius: 4px;
+
+    &_img {
+      width: 100%;
+      height: 400px;
+      border-radius: 4px;
     }
   }
 }

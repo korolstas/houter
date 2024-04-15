@@ -6,6 +6,16 @@
   gap: 120px;
 }
 
+.items {
+  &:first-child {
+    margin-left: 6svw;
+  }
+
+  &:last-child {
+    margin-right: 6svw;
+  }
+}
+
 .box {
   display: flex;
   flex-direction: column;
@@ -85,4 +95,3 @@
     }
   }
 }
-

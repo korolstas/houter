@@ -1,17 +1,14 @@
+import { Carousel } from "antd";
 import Image from "next/image";
 
+import { login_1, login_2, login_3, login_4 } from "@image";
 import { compositionInfo } from "@screens/home/config";
 import { User } from "@types";
 
 import styles from "./styles.module.scss";
 
-import { SliderPictureByOne } from "../sliders";
 import { SvgSwitcher } from "../SvgSwitcher";
 import { UserCard } from "../user";
-
-import image1 from "../../../public/img/home/Woodlandside.png";
-import image2 from "../../../public/img/home/TheOldLighthouse.png";
-import image3 from "../../../public/img/home/apartment_1.webp";
 
 type CompositionProps = {
   descrioption: string;
@@ -19,6 +16,25 @@ type CompositionProps = {
   top: string;
   user: User;
 };
+
+const carousel = [
+  {
+    image: login_1,
+    alt: "login_1",
+  },
+  {
+    image: login_3,
+    alt: "login_3",
+  },
+  {
+    image: login_2,
+    alt: "login_2",
+  },
+  {
+    image: login_4,
+    alt: "login_4",
+  },
+];
 
 export const Composition = ({
   descrioption,
@@ -40,7 +56,7 @@ export const Composition = ({
             <div className={styles.desc_detail_items}>
               {compositionInfo.map(({ name, amount }) => {
                 return (
-                  <div className={styles.desc_detail_items_item}>
+                  <div key={name} className={styles.desc_detail_items_item}>
                     <SvgSwitcher variant={name.toLowerCase()} />
                     <label>
                       {amount} {amount > 1 ? `${name}s` : name}
@@ -50,14 +66,31 @@ export const Composition = ({
               })}
             </div>
           </div>
-          <UserCard isWho={true} isContactNow={true} size={56} user={user} />
+          <div style={{ marginTop: "16px" }}>
+            <UserCard isWho={true} isContactNow={true} size={56} user={user} />
+          </div>
         </div>
       </div>
-      <SliderPictureByOne>
-        <Image src={image1} alt="" />
-        <Image src={image2} alt="" />
-        <Image src={image3} alt="" />
-      </SliderPictureByOne>
+      <div className={styles.carousel}>
+        <Carousel
+          autoplay
+          infinite
+          className={styles.carousel_item}
+          autoplaySpeed={5000}
+        >
+          {carousel.map(({ image, alt }) => {
+            return (
+              <Image
+                className={styles.carousel_item_img}
+                loading="lazy"
+                src={image}
+                alt={alt}
+                key={alt}
+              />
+            );
+          })}
+        </Carousel>
+      </div>
     </div>
   );
 };

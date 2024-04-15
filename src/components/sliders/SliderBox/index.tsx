@@ -1,3 +1,5 @@
+"use client";
+
 import { CSSProperties, ReactNode, useRef } from "react";
 import { observer } from "mobx-react-lite";
 
@@ -63,6 +65,7 @@ const SliderComponent = ({
                   isActive={bttnType === name ? true : false}
                   onClick={() => handlerSearch(name)}
                   variant={"secondary"}
+                  key={name}
                 >
                   <SvgSwitcher variant={name.toLowerCase()} />
                   {name}

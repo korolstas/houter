@@ -1,0 +1,28 @@
+@import "../../../assets/styles/variables.scss";
+
+.container {
+  height: 200px;
+  width: 200px;
+  border-radius: 25px;
+  border: 2px dashed $textMuted;
+
+  &_box {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    gap: 5px;
+    font-family: Lexend;
+    font-weight: 500;
+    font-size: 20px;
+    color: $textGray;
+
+    svg {
+      font-size: 40px;
+
+      path {
+        fill: $textGray;
+      }
+    }
+  }
+}

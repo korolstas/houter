@@ -7,29 +7,29 @@
   display: flex;
   align-items: center;
   font-family: Lexend;
-  font-size: 14px;
+  font-size: 16px;
   font-weight: 500;
   line-height: 18px;
   letter-spacing: 0px;
   gap: 10px;
-  border-radius: 32px;
+  border-radius: 8px;
   padding: 8px 16px 8px 16px;
   height: 34px;
   width: max-content;
 
   svg {
     path {
-      fill: #ef4444;
+      fill: $textRed;
     }
   }
 }
 
 .popular {
-  color: #ef4444;
+  color: $textRed;
   background-color: #fee2e2;
   svg {
     path {
-      fill: #ef4444;
+      fill: $textRed;
     }
   }
 }

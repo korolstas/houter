@@ -1,0 +1,34 @@
+@import "../../../assets/styles/variables.scss";
+
+.card {
+  &_photo {
+    display: flex;
+    position: relative;
+
+    &_img {
+      width: 340px;
+      height: 300px;
+      object-fit: cover;
+    }
+  }
+
+  .edit {
+    &:hover {
+      svg {
+        path {
+          fill: $text;
+        }
+      }
+    }
+  }
+
+  .delete {
+    &:hover {
+      svg {
+        path {
+          fill: $textRed;
+        }
+      }
+    }
+  }
+}

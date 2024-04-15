@@ -12,7 +12,7 @@ export { default as man } from "./home/man.jpg";
 export { default as dianne_russell } from "./home/dianne-russell.png";
 export { default as apartment_1 } from "./home/apartment_1.webp";
 export { default as villa_1 } from "./home/villa_1.webp";
-export { default as house_1 } from "./home/house_1.png";
+export { default as house_1 } from "./home/home1.jpg";
 
 export { default as login_1 } from "./login/login_1.jpg";
 export { default as login_2 } from "./login/login_2.jpg";

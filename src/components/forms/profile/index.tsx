@@ -1,14 +1,6 @@
-import {
-  Button,
-  DatePicker,
-  Form,
-  GetProp,
-  Input,
-  Select,
-  Upload,
-  UploadProps,
-  message,
-} from "antd";
+"use client";
+
+import { Button, DatePicker, Form, Input, Select, message } from "antd";
 import { useRouter } from "next/navigation";
 import { observer } from "mobx-react-lite";
 import { useState } from "react";
@@ -18,7 +10,6 @@ import {
   CloseOutlined,
   FormOutlined,
   MailOutlined,
-  PlusOutlined,
   UserOutlined,
 } from "@ant-design/icons";
 
@@ -114,7 +105,9 @@ const FormProfileComponent = () => {
       >
         <div className={styles.avatar}>
           <div className={styles.avatar_box}>
-            <AvatarUpload isDisabled={isDisabled} imgUrl={user?.imgUrl} />
+            <div>
+              <AvatarUpload isDisabled={isDisabled} imgUrl={user?.imgUrl} />
+            </div>
             <div className={styles.avatar_box_input}>
               <div>
                 <div className={styles.placeholder}>
@@ -183,7 +176,7 @@ const FormProfileComponent = () => {
             ]}
           >
             <Input
-              disabled={isDisabled}
+              disabled
               placeholder="Enter Email"
               size="middle"
               prefix={<MailOutlined style={{ paddingRight: "5px" }} />}
@@ -252,14 +245,16 @@ const FormProfileComponent = () => {
           </Form.Item>
 
           {isDisabled ? (
-            <Button
-              type="primary"
-              onClick={editHandler}
-              icon={<FormOutlined />}
-              className={styles.button}
-            >
-              Edit Profile
-            </Button>
+            <Form.Item>
+              <Button
+                type="primary"
+                onClick={editHandler}
+                icon={<FormOutlined />}
+                className={styles.button}
+              >
+                Edit Profile
+              </Button>
+            </Form.Item>
           ) : (
             <div style={{ display: "flex", gap: "10px" }}>
               <Form.Item style={{ display: "flex", gap: "10px" }}>

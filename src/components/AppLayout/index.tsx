@@ -4,7 +4,7 @@ import { ReactNode } from "react";
 import styles from "./styles.module.scss";
 
 import { HorizontalScroll } from "../HorizontalScroll";
-import { RaitingCard } from "../RaitingCard";
+import { RaitingCard } from "../cards/RaitingCard";
 import { Header } from "../header/Header";
 import { ScrollHeader } from "../header/ScrollHeader";
 
@@ -32,6 +32,7 @@ export const AppLayout = ({ children, scrollingData }: Props) => {
                   header={header}
                   image={image}
                   alt={alt}
+                  key={alt}
                 />
               );
             })}

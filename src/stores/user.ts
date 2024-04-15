@@ -1,15 +1,6 @@
 import { makeAutoObservable } from "mobx";
 
-type User = {
-  id: string | number;
-  firstName: string;
-  lastName: string;
-  email: string;
-  imgUrl?: string;
-  phone?: string;
-  birthday?: string;
-  location?: string;
-};
+import { User } from "@types";
 
 export class UserStore {
   user: User | null = null;
