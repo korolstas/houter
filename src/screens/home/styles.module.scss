@@ -8,11 +8,11 @@
 
 .items {
   &:first-child {
-    margin-left: 6svw;
+    margin-left: 8.5%;
   }
 
   &:last-child {
-    margin-right: 6svw;
+    margin-right: 8.5%;
   }
 }
 
@@ -55,9 +55,9 @@
       margin-left: 20px;
     }
 
-    input {
+    .input {
       color: $text;
-      width: 303px;
+      width: 300px;
       border: none;
       font-family: Lexend;
       font-size: 14px;
@@ -65,6 +65,10 @@
       line-height: 22px;
       letter-spacing: 0px;
       outline: none;
+
+      svg {
+        display: none;
+      }
 
       &::-webkit-input-placeholder {
         color: $textMuted;

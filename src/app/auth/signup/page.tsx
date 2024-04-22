@@ -1,4 +1,4 @@
-import { SignUp } from "@screens/signup";
+import { SignUp } from "@screens/auth/signup";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {

@@ -52,43 +52,49 @@ const SliderComponent = ({
 
   return (
     <div className={styles.slider}>
-      <div className={styles.slider_top}>
-        <span>{top}</span>
-      </div>
-      <div className={styles.slider_header}>
-        <h2>{header}</h2>
-        <div className={styles.slider_header_bttns}>
-          {bttns &&
-            bttns.map(({ name }) => {
-              return (
-                <Button
-                  isActive={bttnType === name ? true : false}
-                  onClick={() => handlerSearch(name)}
-                  variant={"secondary"}
-                  key={name}
-                >
-                  <SvgSwitcher variant={name.toLowerCase()} />
-                  {name}
-                </Button>
-              );
-            })}
+      <div className={styles.position}>
+        <div className={styles.center}>
+          <div className={`${styles.slider_top}`}>
+            <span>{top}</span>
+          </div>
+          <div className={styles.slider_header}>
+            <h2>{header}</h2>
+
+            <div className={styles.slider_header_bttns}>
+              {bttns &&
+                bttns.map(({ name }) => {
+                  return (
+                    <Button
+                      isActive={bttnType === name ? true : false}
+                      onClick={() => handlerSearch(name)}
+                      variant={"secondary"}
+                      key={name}
+                    >
+                      <SvgSwitcher variant={name.toLowerCase()} />
+                      {name}
+                    </Button>
+                  );
+                })}
+            </div>
+            <div className={styles.slider_header_arrows}>
+              <Button
+                onClick={handlerPrev}
+                style={{ transform: "rotate(180deg)" }}
+                variant={"arrow"}
+              >
+                <SvgSwitcher variant={"arrow"} />
+              </Button>
+              <Button onClick={handlerNext} variant={"arrow"}>
+                <SvgSwitcher variant={"arrow"} />
+              </Button>
+            </div>
+          </div>
         </div>
-        <div className={styles.slider_header_arrows}>
-          <Button
-            onClick={handlerPrev}
-            style={{ transform: "rotate(180deg)" }}
-            variant={"arrow"}
-          >
-            <SvgSwitcher variant={"arrow"} />
-          </Button>
-          <Button onClick={handlerNext} variant={"arrow"}>
-            <SvgSwitcher variant={"arrow"} />
-          </Button>
-        </div>
+
+        <HorizontalScroll ref={sliderRef} style={style}>
+          {children}
+        </HorizontalScroll>
       </div>
-      <HorizontalScroll ref={sliderRef} style={style}>
-        {children}
-      </HorizontalScroll>
     </div>
   );
 };

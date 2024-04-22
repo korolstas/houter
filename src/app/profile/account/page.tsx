@@ -1,4 +1,4 @@
-import { Profile } from "@screens/profile";
+import { Profile } from "@screens/profile/account";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {

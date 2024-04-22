@@ -1,14 +1,15 @@
+import { StaticImport } from "next/dist/shared/lib/get-img-props";
 import React, { CSSProperties } from "react";
 import Image from "next/image";
 
 import styles from "./styles.module.scss";
 
 type AvatarProps = {
-  firstName: string | undefined;
-  lastName: string | undefined;
+  lastName?: string;
+  firstName?: string;
+  id?: string | number;
   style?: CSSProperties;
-  image?: string;
-  id: string | number | undefined;
+  image?: string | StaticImport;
 };
 
 export const CustomAvatar = ({

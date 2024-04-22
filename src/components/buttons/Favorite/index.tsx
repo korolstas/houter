@@ -3,10 +3,19 @@ import { useState } from "react";
 
 import styles from "./styles.module.scss";
 
-export const Favorite = () => {
+type FavoriteProps = {
+  id: number | string;
+};
+
+export const Favorite = ({ id }: FavoriteProps) => {
   const [isFavorite, setIsFavorite] = useState(false);
 
-  const handleEdit = () => setIsFavorite(!isFavorite);
+  const handleEdit = (event: React.MouseEvent) => {
+    event.stopPropagation(); // Добавлено для предотвращения всплытия события
+    setIsFavorite(!isFavorite);
+
+    //отпрвка id-шки
+  };
 
   return (
     <div

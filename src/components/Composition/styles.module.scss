@@ -1,10 +1,14 @@
 @import "../../assets/styles/variables.scss";
 
+.center {
+  width: 83%;
+  margin-inline: auto;
+}
+
 .container {
   display: flex;
   justify-content: space-between;
-  // align-items: center;
-  margin: 0 85px 120px 85px;
+  margin-bottom: 120px;
 }
 
 .desc {

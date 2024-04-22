@@ -5,7 +5,8 @@ import Link from "next/link";
 import { useStore } from "@stores";
 
 import styles from "./styles.module.scss";
-import { confMenu } from "./config";
+
+import { confMenu, configMenuType, dropDownMenu } from "./config";
 
 import { Dropdown, Button } from "../../buttons";
 import { SvgSwitcher } from "../../SvgSwitcher";
@@ -14,76 +15,82 @@ import { UserDropdown } from "../../user";
 
 const HeaderComponent = () => {
   const { userStore } = useStore();
-  const { user } = userStore;
+  const { user, clearUser, setMenuType } = userStore;
 
   const bttn_text = "Sign In!";
 
-  const items: MenuProps["items"] = [
-    {
-      key: 1,
+  const itemsDownMenu = dropDownMenu.map(({ value, href, id }) => {
+    return {
+      key: id,
       label: (
-        <Link href="property?realty=house">
-          <SvgSwitcher variant={"house"} />
-          Houses
+        <Link href={`${href}${value.toLowerCase()}`}>
+          <SvgSwitcher variant={value.toLowerCase()} />
+          {value}
         </Link>
       ),
-    },
-    {
-      key: 2,
-      label: (
-        <Link href="property?realty=villa">
-          <SvgSwitcher variant={"villa"} />
-          Villas
-        </Link>
-      ),
-    },
-    {
-      key: 3,
-      label: (
-        <Link href="property?realty=apartment">
-          <SvgSwitcher variant={"apartment"} />
-          Apartments
-        </Link>
-      ),
-    },
-  ];
+    };
+  });
+
+  const itemsMenuType = configMenuType.map(
+    ({ label, key, href, icon, danger }) => {
+      return {
+        key: key,
+        label: (
+          <Link
+            onClick={danger ? clearUser : () => setMenuType(key)}
+            href={href}
+          >
+            {label}
+          </Link>
+        ),
+        icon: icon,
+        danger: danger,
+      };
+    }
+  );
 
   return (
     <ScrollHeader>
       <div className={styles.container}>
-        <div className={styles.header}>
-          <div className={styles.link}>
-            <Link href={"/"}>
-              <SvgSwitcher variant={"logo"} />
-            </Link>
-          </div>
-          <div className={styles.container_box}>
-            <div className={styles.container_box_menu}>
-              {confMenu.map(({ label }) => {
-                return label.toLocaleLowerCase() === "property" ? (
-                  <Dropdown
-                    icon={<SvgSwitcher variant={"arrow"} />}
-                    overlayClassName={"dark"}
-                    variant={"dark"}
-                    items={items}
-                    key={label}
-                  >
-                    {label}
-                  </Dropdown>
-                ) : (
-                  <Button key={label} variant={"dark"}>
-                    {label}
-                  </Button>
-                );
-              })}
+        <div className={styles.width}>
+          <div className={styles.header}>
+            <div className={`${styles.link}`}>
+              <div className={styles.center}>
+                <Link href={"/"}>
+                  <SvgSwitcher variant={"logo"} />
+                </Link>
+              </div>
             </div>
-            {user ? (
-              <UserDropdown user={user} />
-            ) : (
-              <Link href={"auth/login"}>
-                <Button variant={"darkGreen"}>{bttn_text}</Button>
-              </Link>
-            )}
+            <div className={`${styles.box}`}>
+              <div className={styles.center}>
+                <div className={styles.box_menu}>
+                  {confMenu.map(({ label }) => {
+                    return label.toLocaleLowerCase() === "property" ? (
+                      <Dropdown
+                        icon={<SvgSwitcher variant={"arrow"} />}
+                        overlayClassName={"dark"}
+                        variant={"dark"}
+                        items={itemsDownMenu}
+                        key={label}
+                      >
+                        {label}
+                      </Dropdown>
+                    ) : (
+                      <Button key={label} variant={"dark"}>
+                        {label}
+                      </Button>
+                    );
+                  })}
+                </div>
+                {user ? (
+                  <UserDropdown user={user} items={itemsMenuType} />
+                ) : (
+                  <Link href={"/auth/login"}>
+                    <Button variant={"darkGreen"}>{bttn_text}</Button>
+                  </Link>
+                )}
+              </div>
+            </div>
           </div>
         </div>
       </div>

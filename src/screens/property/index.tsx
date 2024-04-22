@@ -1,15 +1,14 @@
 "use client";
 
 import { Input } from "antd";
+import { observer } from "mobx-react-lite";
 
-import { SideFilter } from "@/components/SideFilter";
-
-import { AntdProvider, Card } from "@components";
+import { AntdProvider, Card, SideFilter } from "@components";
 import { cards } from "@screens/home/config";
 
 import styles from "./styles.module.scss";
 
-export const Property = () => {
+const PropertyComponent = () => {
   return (
     <div className={styles.display}>
       <AntdProvider>
@@ -29,18 +28,20 @@ export const Property = () => {
                 />
               </div>
               <div className={styles.page_box_properties_items}>
-                {cards.map(({ image, title, price, user, banner }, index) => {
+                {cards.map(({ image, title, price, user, banner, id }) => {
                   return (
                     <Card
                       isFavorite
-                      width={260}
-                      height={200}
-                      key={index}
-                      image={image}
+                      banner={banner}
                       title={title}
                       price={price}
-                      banner={banner}
+                      image={image}
+                      height={200}
+                      cardWidth={"30%"}
+                      width={"100%"}
                       user={user}
+                      key={id}
+                      id={id}
                     />
                   );
                 })}
@@ -52,3 +53,5 @@ export const Property = () => {
     </div>
   );
 };
+
+export const Property = observer(PropertyComponent);

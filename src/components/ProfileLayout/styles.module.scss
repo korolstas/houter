@@ -1,0 +1,19 @@
+@import "../../assets/styles/variables.scss";
+
+.container {
+  display: flex;
+  height: max-content;
+  width: 83%;
+  padding-top: 115px;
+  padding-bottom: 90px;
+  margin-inline: auto;
+
+  &_menu {
+    width: 18%;
+  }
+
+  &_box {
+    padding-left: 24px;
+    width: 50%;
+  }
+}

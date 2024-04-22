@@ -43,7 +43,11 @@ export const AntdProvider = ({ children }: AntdProviderProps) => {
             colorPrimary: colors.backgroundGreen,
             colorPrimaryHover: colors.backgroundGreenSecond,
             colorPrimaryActive: colors.textGreen,
-            colorTextLightSolid: colors.backgroundGreenLight,
+            colorTextLightSolid: colors.textWhite,
+          },
+          Menu: {
+            ...components,
+            itemActiveBg: colors.backgroundGreenLight,
           },
         },
       }}

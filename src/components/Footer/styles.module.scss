@@ -1,10 +1,16 @@
 @import "../../assets/styles/variables.scss";
 
+.display {
+  width: 100%;
+  background-color: $backgroundGreenLight;
+}
+
 .footer {
   display: flex;
   justify-content: space-between;
-  padding: 100px 120px;
-  background-color: $backgroundGreenLight;
+  width: 83%;
+  padding: 100px 0;
+  margin-inline: auto;
 
   &_logo {
     display: flex;

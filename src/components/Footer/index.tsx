@@ -12,7 +12,7 @@ import { SvgSwitcher } from "../SvgSwitcher";
 const info = [
   {
     name: "Property",
-    links: ["House", "Apartment", "Villa"],
+    links: ["House", "Villa", "Apartment"],
   },
   {
     name: "Article",
@@ -30,42 +30,48 @@ const info = [
 
 export const Footer = () => {
   return (
-    <footer className={styles.footer}>
-      <div className={styles.footer_logo}>
-        <SvgSwitcher variant={"logo"} />
-        <div className={styles.footer_logo_text}>
-          We provide information about properties such as houses, villas and
-          apartments to help people find their dream home
+    <div className={styles.display}>
+      <footer className={styles.footer}>
+        <div className={styles.footer_logo}>
+          <SvgSwitcher variant={"logo"} />
+          <div className={styles.footer_logo_text}>
+            We provide information about properties such as houses, villas and
+            apartments to help people find their dream home
+          </div>
+          <div className={styles.footer_logo_pictures}>
+            <FacebookOutlined />
+            <TwitterOutlined />
+            <InstagramFilled />
+          </div>
         </div>
-        <div className={styles.footer_logo_pictures}>
-          <FacebookOutlined />
-          <TwitterOutlined />
-          <InstagramFilled />
-        </div>
-      </div>
-      <div className={styles.footer_info}>
-        {info.map(({ name, links, contacts }) => {
-          return (
-            <div key={name} className={styles.footer_info_box}>
-              <label>{name}</label>
-              <div className={styles.footer_info_box_items}>
-                {links &&
-                  links.map((item) => (
-                    <Link key={item} className={styles.item} href="/">
-                      {item}
-                    </Link>
-                  ))}
-                {contacts &&
-                  contacts.map((item) => (
-                    <div key={item} className={styles.item}>
-                      {item}
-                    </div>
-                  ))}
+        <div className={styles.footer_info}>
+          {info.map(({ name, links, contacts }) => {
+            return (
+              <div key={name} className={styles.footer_info_box}>
+                <label>{name}</label>
+                <div className={styles.footer_info_box_items}>
+                  {links &&
+                    links.map((item) => (
+                      <Link
+                        key={item}
+                        className={styles.item}
+                        href={`/property?realty=${item.toLowerCase()}`}
+                      >
+                        {item}
+                      </Link>
+                    ))}
+                  {contacts &&
+                    contacts.map((item) => (
+                      <div key={item} className={styles.item}>
+                        {item}
+                      </div>
+                    ))}
+                </div>
               </div>
-            </div>
-          );
-        })}
-      </div>
-    </footer>
+            );
+          })}
+        </div>
+      </footer>
+    </div>
   );
 };

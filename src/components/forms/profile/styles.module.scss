@@ -1,0 +1,70 @@
+@import "../../../assets/styles/variables.scss";
+
+.form {
+  color: $text;
+
+  h1 {
+    font-size: 24px;
+    margin-bottom: 20px;
+  }
+
+  .form_item {
+    margin-bottom: 0 !important;
+  }
+
+  .box {
+    padding: 24px 28px;
+    border-radius: 8px;
+    border: 1px solid #dddddd;
+
+    &:first-child {
+      margin-bottom: 16px;
+    }
+  }
+
+  .profile {
+    display: flex;
+    flex-direction: column;
+
+    &_items {
+      display: flex;
+
+      .block {
+        width: 50%;
+        &:first-child {
+          margin-right: 16px;
+        }
+      }
+
+      .item {
+        width: 100%;
+
+        input {
+          font-family: Lexend;
+        }
+      }
+    }
+
+    .button {
+      font-family: Lexend;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 16px;
+      padding: 0 16px;
+    }
+  }
+
+  .descrioption {
+    font-family: Lexend;
+    font-weight: 400;
+    color: $textGray;
+  }
+
+  .placeholder {
+    font-family: Lexend;
+    font-weight: 400;
+    font-size: 16px;
+    color: $text;
+  }
+}

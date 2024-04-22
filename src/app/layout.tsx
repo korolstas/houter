@@ -19,7 +19,7 @@ export default function RootLayout({ children }: Props) {
     <html lang="en">
       <body>
         {isHiden && <Header />}
-        {children}
+        <div className="margin_position">{children}</div>
         {isHiden && <Footer />}
       </body>
     </html>

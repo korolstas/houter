@@ -13,4 +13,5 @@ export type User = {
   birthday?: string;
   location?: string;
   work?: string;
+  favorites?: number[];
 };

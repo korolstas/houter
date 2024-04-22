@@ -5,8 +5,6 @@ import styles from "./styles.module.scss";
 
 import { HorizontalScroll } from "../HorizontalScroll";
 import { RaitingCard } from "../cards/RaitingCard";
-import { Header } from "../header/Header";
-import { ScrollHeader } from "../header/ScrollHeader";
 
 type Props = {
   children: ReactNode;
@@ -21,22 +19,26 @@ type Props = {
 export const AppLayout = ({ children, scrollingData }: Props) => {
   return (
     <div className={styles.container}>
-      <div className={styles.container_preview}>{children}</div>
+      <div className={styles.container_preview}>
+        <div className={styles.center}>{children}</div>
+      </div>
       <div className={styles.container_image}>
         {scrollingData && (
-          <HorizontalScroll>
-            {scrollingData.map(({ image, alt, header, description }) => {
-              return (
-                <RaitingCard
-                  description={description}
-                  header={header}
-                  image={image}
-                  alt={alt}
-                  key={alt}
-                />
-              );
-            })}
-          </HorizontalScroll>
+          <div className={styles.cards}>
+            <HorizontalScroll>
+              {scrollingData.map(({ image, alt, header, description }) => {
+                return (
+                  <RaitingCard
+                    description={description}
+                    header={header}
+                    image={image}
+                    alt={alt}
+                    key={alt}
+                  />
+                );
+              })}
+            </HorizontalScroll>
+          </div>
         )}
       </div>
     </div>

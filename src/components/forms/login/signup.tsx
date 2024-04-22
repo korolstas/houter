@@ -1,5 +1,6 @@
 import { Button, Form, Input, message } from "antd";
 import { useRouter } from "next/navigation";
+import { observer } from "mobx-react-lite";
 import {
   SafetyCertificateOutlined,
   SwapRightOutlined,
@@ -19,20 +20,23 @@ type FormSignUp = {
   email: string;
 };
 
-export const FormSignUp = () => {
+const FormSignUpComponent = () => {
   const { userStore } = useStore();
-  const { setUser } = userStore;
+  const { fetchRegister, user } = userStore;
   const router = useRouter();
 
-  const onFinish = (data: FormSignUp) => {
-    message.success("Account is creating successfully");
-    setUser({
-      id: 4432432,
+  const onFinish = async (data: FormSignUp) => {
+    await fetchRegister({
       firstName: data.firstName,
       lastName: data.lastName,
+      password: data.password,
       email: data.email,
     });
-    router.push("/", { scroll: false });
+
+    if (user) {
+      message.success("Account is creating successfully");
+      router.push("/", { scroll: false });
+    }
   };
 
   return (
@@ -137,3 +141,5 @@ export const FormSignUp = () => {
     </AntdProvider>
   );
 };
+
+export const FormSignUp = observer(FormSignUpComponent);

@@ -1,3 +1,4 @@
+import { StaticImport } from "next/dist/shared/lib/get-img-props";
 import { PlusOutlined } from "@ant-design/icons";
 import { Button, message } from "antd";
 import Image from "next/image";
@@ -5,8 +6,8 @@ import Image from "next/image";
 import styles from "./styles.module.scss";
 
 type AvatarUploadsProps = {
-  isDisabled: boolean;
-  imgUrl?: string | null;
+  imgUrl?: string | StaticImport;
+  isDisabled?: boolean;
 };
 
 export const AvatarUpload = ({ imgUrl, isDisabled }: AvatarUploadsProps) => {

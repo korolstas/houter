@@ -11,26 +11,27 @@ import { AntdProvider } from "@components";
 import { useStore } from "@stores";
 
 import styles from "./styles.module.scss";
+import { observer } from "mobx-react-lite";
+import { useEffect } from "react";
 
 type FormLogin = {
-  checkbox: boolean;
   password: string;
   email: string;
 };
 
-export const FormLogin = () => {
+const FormLoginComponent = () => {
   const router = useRouter();
   const { userStore } = useStore();
-  const { setUser } = userStore;
+  const { fetchAuth, user } = userStore;
+
+  useEffect(() => {
+    console.log(13132, user);
+
+    if (user) router.push("/", { scroll: false });
+  }, [user]);
 
   const onFinish = (data: FormLogin) => {
-    setUser({
-      id: 99,
-      firstName: "Super",
-      lastName: "Admin",
-      email: data.email,
-    });
-    router.push("/", { scroll: false });
+    fetchAuth({ password: data.password, email: data.email });
   };
 
   return (
@@ -66,7 +67,7 @@ export const FormLogin = () => {
           rules={[
             { required: true, message: "This field should be filled" },
             {
-              pattern: /^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z]).{8,20}$/i,
+              // pattern: /^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z]).{8,20}$/i,
               message:
                 "The password must contain numbers, uppercase letters, lowercase letters and be between 8 and 20 characters long",
             },
@@ -81,7 +82,7 @@ export const FormLogin = () => {
           />
         </Form.Item>
 
-        <div className={styles.placeholder} style={{ marginBottom: "15px" }}>
+        {/* <div className={styles.placeholder} style={{ marginBottom: "15px" }}>
           <Form.Item
             valuePropName="checked"
             name="checkbox"
@@ -90,7 +91,7 @@ export const FormLogin = () => {
             <Checkbox className={styles.checkbox}>Remember me</Checkbox>
           </Form.Item>
           <Link href="#">Forget Your Password?</Link>
-        </div>
+        </div> */}
 
         <Form.Item>
           <Button
@@ -106,3 +107,5 @@ export const FormLogin = () => {
     </AntdProvider>
   );
 };
+
+export const FormLogin = observer(FormLoginComponent);

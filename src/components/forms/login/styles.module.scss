@@ -36,59 +36,59 @@
       }
     }
   }
+}
 
-  .placeholder {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+.placeholder {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-family: Lexend;
+  font-weight: 400;
+  font-size: 18px;
+  color: $text;
+
+  a {
+    color: $textMuted;
     font-family: Lexend;
-    font-weight: 400;
-    font-size: 18px;
-    color: $text;
+    font-weight: 500;
+    font-size: 13px;
+    text-decoration: none;
+    transition: all 0.3s ease-in-out;
 
-    a {
-      color: $textMuted;
-      font-family: Lexend;
-      font-weight: 500;
-      font-size: 13px;
-      text-decoration: none;
-      transition: all 0.3s ease-in-out;
-
-      &:hover {
-        color: $text;
-      }
-    }
-
-    .form_item {
-      display: flex;
-      justify-content: space-between;
-      width: 100%;
-    }
-
-    .checkbox {
-      font-family: Lexend;
-      font-weight: 400;
+    &:hover {
       color: $text;
-      margin-bottom: 0 !important;
     }
   }
 
-  .button {
+  .form_item {
     display: flex;
-    gap: 6px;
+    justify-content: space-between;
     width: 100%;
-    align-items: center;
-    justify-content: center;
-    flex-direction: row-reverse;
+  }
+
+  .checkbox {
     font-family: Lexend;
     font-weight: 400;
-    font-size: 18px;
-    color: $backgroundGreenLight;
-    padding: 20px 0;
+    color: $text;
+    margin-bottom: 0 !important;
+  }
+}
 
-    &:hover {
-      color: $backgroundGreen;
-    }
+.button {
+  display: flex;
+  gap: 6px;
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+  flex-direction: row-reverse;
+  font-family: Lexend;
+  font-weight: 400;
+  font-size: 18px;
+  color: $backgroundGreenLight;
+  padding: 20px 0;
+
+  &:hover {
+    color: $backgroundGreen;
   }
 }
 
