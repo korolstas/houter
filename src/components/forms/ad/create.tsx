@@ -1,8 +1,9 @@
 "use client";
 
 import { Button, Form, Input, Select, message } from "antd";
-import { observer } from "mobx-react-lite";
+import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
+import { observer } from "mobx-react-lite";
 import {
   DollarOutlined,
   UploadOutlined,
@@ -25,6 +26,7 @@ type FormCreateAdProps = {
 };
 
 const FormCreateAdComponent = () => {
+  const router = useRouter();
   const { userStore, countriesStore } = useStore();
   const { user, createCard, uploadImage } = userStore;
   const { fetchCountries, countries, isLoading } = countriesStore;
@@ -36,7 +38,8 @@ const FormCreateAdComponent = () => {
   const onFinish = (data: FormCreateAdProps) => {
     if (selectedFile) {
       createCard({ file: selectedFile, ...data });
-      message.success("Account uploaded successfully");
+      message.success("Create ad successfully");
+      router.push("/profile/my_property");
     }
   };
 
