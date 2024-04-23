@@ -25,7 +25,7 @@ type FormProfile = {
   lastName: string;
   email: string;
   img?: string | null;
-  birthday?: string | null;
+  work?: string | null;
   location?: string | null;
   phone?: string | null;
 };
@@ -33,22 +33,21 @@ type FormProfile = {
 const FormProfileComponent = () => {
   const { userStore, countriesStore } = useStore();
   const { fetchCountries, countries, isLoading } = countriesStore;
-  const { user } = userStore;
+  const { user, updateUser } = userStore;
 
   useEffect(() => {
     if (!countries) fetchCountries();
   }, []);
 
   const onFinish = (data: FormProfile) => {
-    // console.log(21212, data);
-    // setUser({
-    // email: user?.email,
-    // firstName: user?.firstName,
-    // lastName: user?.lastName,
-    // birthday: user?.birthday,
-    // location: user?.location,
-    // });
-    // router.push("/", { scroll: false });
+    updateUser({
+      id: user.id,
+      phone: data.phone,
+      firstName: data.firstName,
+      lastName: data.lastName,
+      location: data.location,
+      work: data.work,
+    });
     message.success("Account uploaded successfully");
   };
 
@@ -57,16 +56,16 @@ const FormProfileComponent = () => {
     label: name,
   }));
 
-  const disabledDate = (current: dayjs.Dayjs) =>
-    current && current.isAfter(dayjs(), "day");
+  // const disabledDate = (current: dayjs.Dayjs) =>
+  //   current && current.isAfter(dayjs(), "day");
 
   const initialValues = {
     firstName: user?.firstName,
     lastName: user?.lastName,
-    birthday: user?.birthday,
     location: user?.location,
     phone: user?.phone,
     email: user?.email,
+    work: user?.work,
   };
 
   return (
@@ -87,8 +86,8 @@ const FormProfileComponent = () => {
             name="phone"
             rules={[
               {
-                pattern: /^\d+$/i,
-                message: "Invalid phone format",
+                // pattern: /^\d+$/i,
+                // message: "Invalid phone format",
               },
             ]}
           >
@@ -173,13 +172,7 @@ const FormProfileComponent = () => {
             </div>
           </div>
 
-          <div className={styles.profile_items}>
-            <div className={styles.block}>
-              <div className={styles.placeholder}>
-                <label>Birthday</label>
-              </div>
-
-              <Form.Item name="birthday">
+          {/* <Form.Item name="birthday">
                 <DatePicker
                   disabledDate={disabledDate}
                   className={styles.item}
@@ -189,7 +182,20 @@ const FormProfileComponent = () => {
                 <label className={styles.descrioption}>
                   Will not be displayed in the profile
                 </label>
+              </Form.Item> */}
+
+          <div className={styles.profile_items}>
+            <div className={styles.block}>
+              <div className={styles.placeholder}>
+                <label>Work</label>
+              </div>
+              <Form.Item name="work">
+                <Input placeholder="Enter Work" size="large" />
               </Form.Item>
+
+              <label className={styles.descrioption}>
+                Will not be displayed in the profile
+              </label>
             </div>
 
             <div className={styles.block}>
@@ -207,10 +213,10 @@ const FormProfileComponent = () => {
                   placeholder="Enter Location"
                   size="large"
                 />
-                <label className={styles.descrioption}>
-                  Will not be displayed in the profile
-                </label>
               </Form.Item>
+              <label className={styles.descrioption}>
+                Will not be displayed in the profile
+              </label>
             </div>
           </div>
 

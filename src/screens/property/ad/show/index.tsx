@@ -1,95 +1,115 @@
 "use client";
 
-import { useSearchParams } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import { observer } from "mobx-react-lite";
+import { useEffect } from "react";
 import Image from "next/image";
 import { Button } from "antd";
 import {
+  PictureOutlined,
   SettingOutlined,
   DeleteOutlined,
   PhoneOutlined,
 } from "@ant-design/icons";
 
 import { AntdProvider, UserCard } from "@components";
-import { cards, compositionInfo } from "@screens/home/config";
+import { useStore } from "@stores";
 
 import styles from "./styles.module.scss";
 
 const ShowAdComponent = () => {
+  const router = useRouter();
+  const { userStore } = useStore();
+  const { showCard, card, user, cardDelete } = userStore;
+
   const searchParams = useSearchParams();
   const id = searchParams.get("id");
 
-  const findObjectById = (objects: any[], id: string | null): any | null => {
-    for (let obj of objects) {
-      if (obj.id === Number(id)) {
-        return obj;
-      }
-    }
-    return null;
+  useEffect(() => {
+    if (id) showCard({ id: Number(id) });
+  }, []);
+
+  const isYour = card.user?.id === user?.id;
+
+  const handlerEdit = () => {
+    showCard({ id: Number(id) });
+
+    router.push(`/property/ad/edit?id=${id}`);
   };
 
-  const foundObject = findObjectById(cards, id);
+  const handlerDelete = () => {
+    cardDelete({ id: Number(id) });
 
-  const isYour = id; // дописать
+    router.push(`/profile/my_property`);
+  };
 
   return (
     <div className={styles.display}>
       <AntdProvider>
         <div className={styles.page}>
           <div className={styles.page_box}>
-            <div className={styles.page_box_image}>
-              <Image src={foundObject.image} alt={foundObject.title} />
-            </div>
-            <div className={styles.bottom}>
-              <h3>Specifications</h3>
-              {compositionInfo.map(({ name, amount }) => {
-                return (
-                  <div className={styles.item}>
-                    <label>
-                      Amount {name.toLowerCase()} ......................{" "}
-                    </label>
-                    {amount}
-                  </div>
-                );
-              })}
-            </div>
+            {card.image ? (
+              <div className={styles.page_box_image}>
+                <Image
+                  width={200}
+                  height={200}
+                  src={card.image}
+                  alt={card.title}
+                />
+              </div>
+            ) : (
+              <div
+                style={{
+                  display: "flex",
+                  flexDirection: "column",
+                  fontFamily: "Lexend",
+                  margin: 200,
+                  width: "max-content",
+                }}
+                className={styles.card_photo}
+              >
+                <PictureOutlined style={{ fontSize: 100, color: "#888b97" }} />
+              </div>
+            )}
             <div className={styles.page_box_description}>
               <h3>Description</h3>
-              {foundObject.description}
+              {card.description}
             </div>
           </div>
           <div className={styles.page_info}>
             <div className={`${styles.page_info_title} ${styles.bottom}`}>
-              <h1 className={styles.price}>{foundObject.price}</h1>
-              <h1 className={styles.title}>{foundObject.title}</h1>
+              <h1 className={styles.price}>$ {card.price}</h1>
+              <h1 className={styles.title}>{card.title}</h1>
               <div>
                 <div className={styles.location}>
-                  {foundObject.location}; {foundObject.street}
+                  {card.location}; {card.street}
                 </div>
-                <div className={styles.data}>12 Apr., 09:23</div>
+                {/* <div className={styles.data}>12 Apr., 09:23</div> */}
               </div>
             </div>
             <div className={styles.page_info_container}>
               <div>
                 <div className={styles.rent}>
                   <label>Type of Rent ...................... </label>
-                  {foundObject.rent}
+                  {card.rent}
                 </div>
                 <div className={styles.realty}>
                   <label>Type of Realty ...................... </label>
-                  {foundObject.realty}
+                  {card.realty}
                 </div>
               </div>
-              <div className={styles.contact}>
-                <PhoneOutlined />
-                <div>
-                  <h3>Phone Numbers in the Ad</h3>
-                  {foundObject.user.phone}
+              {card?.user?.phone && (
+                <div className={styles.contact}>
+                  <PhoneOutlined />
+                  <div>
+                    <h3>Phone Numbers in the Ad</h3>
+                    {card.user.phone}
+                  </div>
                 </div>
-              </div>
+              )}
 
               <div className={styles.user}>
-                <UserCard user={foundObject.user} />
+                <UserCard user={card.user} />
               </div>
               {isYour && (
                 <div className={styles.actions}>
@@ -104,6 +124,7 @@ const ShowAdComponent = () => {
                       fontFamily: "Lexend",
                     }}
                     type="primary"
+                    onClick={handlerEdit}
                   >
                     Edit
                   </Button>
@@ -118,7 +139,8 @@ const ShowAdComponent = () => {
                       fontFamily: "Lexend",
                     }}
                     danger
-                    // type="primary"
+                    type="primary"
+                    onClick={handlerDelete}
                   >
                     Delete
                   </Button>

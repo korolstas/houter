@@ -32,10 +32,15 @@ export const UserCard = ({ user, isContactNow, size }: UserCardProps) => {
             style={{ width: `${size}px`, height: `${size}px` }}
           />
         ) : (
-          <CustomAvatar id={user?.id} image={user?.imgUrl} />
+          <CustomAvatar
+            firstName={user?.firstName}
+            lastName={user?.lastName}
+            image={user?.imgUrl}
+            id={user?.id}
+          />
         )}
         <div className={styles.container_box_description}>
-          <h4>{user?.title}</h4>
+          <h4>{`${user?.firstName} ${user?.lastName}`}</h4>
           <label>{user?.location}</label>
         </div>
       </div>

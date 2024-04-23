@@ -1,12 +1,12 @@
 "use client";
 
-import { Button, Form, Input, Select, message } from "antd";
+import { Button, Form, Image, Input, Select, message } from "antd";
 import { observer } from "mobx-react-lite";
 import { useEffect, useState } from "react";
 import {
+  CheckOutlined,
   DollarOutlined,
   UploadOutlined,
-  CheckOutlined,
 } from "@ant-design/icons";
 
 import { AntdProvider } from "@components";
@@ -20,24 +20,22 @@ type FormCreateAdProps = {
   realty: string;
   rent: string;
   location: string | null;
-  street?: string;
   description?: string;
 };
 
-const FormCreateAdComponent = () => {
+const FormEditAdComponent = ({ id }: { id?: string | null }) => {
   const { userStore, countriesStore } = useStore();
-  const { user, createCard, uploadImage } = userStore;
+  const { cardUpload, card } = userStore;
   const { fetchCountries, countries, isLoading } = countriesStore;
 
   useEffect(() => {
     if (!countries) fetchCountries();
-  }, []);
+  }, [card]);
+
+  console.log("car12123212d", card);
 
   const onFinish = (data: FormCreateAdProps) => {
-    if (selectedFile) {
-      createCard({ file: selectedFile, ...data });
-      message.success("Account uploaded successfully");
-    }
+    cardUpload(selectedFile, { id: Number(id), ...data });
   };
 
   const optionsLocation = countries.map(({ name }) => ({
@@ -61,11 +59,25 @@ const FormCreateAdComponent = () => {
     fileInput.click();
   };
 
+  const initialValues = {
+    price: card?.price,
+    title: card?.title,
+    realty: card?.realty,
+    rent: card?.rent,
+    location: card?.location,
+    description: card?.description,
+  };
+
   return (
     <AntdProvider>
-      <Form className={styles.form} onFinish={onFinish}>
+      <Form
+        initialValues={initialValues}
+        className={styles.form}
+        onFinish={onFinish}
+      >
         <div className={styles.avatar}>
           <div className={styles.avatar_box}>
+            <Image width={200} src={card.image}></Image>
             <Button
               style={{ display: "flex", alignItems: "center", gap: 10 }}
               onClick={onImageClick}
@@ -189,4 +201,4 @@ const FormCreateAdComponent = () => {
   );
 };
 
-export const FormCreateAd = observer(FormCreateAdComponent);
+export const FormEditAd = observer(FormEditAdComponent);

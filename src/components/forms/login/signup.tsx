@@ -12,6 +12,7 @@ import { AntdProvider } from "@components";
 import { useStore } from "@stores";
 
 import styles from "./styles.module.scss";
+import { useEffect } from "react";
 
 type FormSignUp = {
   firstName: string;
@@ -25,18 +26,20 @@ const FormSignUpComponent = () => {
   const { fetchRegister, user } = userStore;
   const router = useRouter();
 
-  const onFinish = async (data: FormSignUp) => {
-    await fetchRegister({
+  useEffect(() => {
+    if (user) {
+      message.success("Account is creating successfully");
+      router.push("/", { scroll: false });
+    }
+  }, [user]);
+
+  const onFinish = (data: FormSignUp) => {
+    fetchRegister({
       firstName: data.firstName,
       lastName: data.lastName,
       password: data.password,
       email: data.email,
     });
-
-    if (user) {
-      message.success("Account is creating successfully");
-      router.push("/", { scroll: false });
-    }
   };
 
   return (

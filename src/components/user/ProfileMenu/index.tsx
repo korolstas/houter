@@ -11,13 +11,16 @@ import styles from "./styles.module.scss";
 
 const ProfileMenuComponent = () => {
   const { userStore } = useStore();
-  const { menuType, setMenuType } = userStore;
+  const { menuType, setMenuType, clearUser } = userStore;
 
   const items = configMenuType.map(({ label, key, href, icon, danger }) => {
     return {
       key: key,
       label: (
-        <Link onClick={() => setMenuType(key)} href={href}>
+        <Link
+          onClick={!danger ? () => setMenuType(key) : clearUser}
+          href={href}
+        >
           {label}
         </Link>
       ),

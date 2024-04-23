@@ -1,32 +1,35 @@
 import {
   DeleteOutlined,
-  PictureOutlined,
+  HomeOutlined,
   SettingOutlined,
 } from "@ant-design/icons";
-import Image, { StaticImageData } from "next/image";
+// import Image, { StaticImageData } from "next/image";
 import { useRouter } from "next/navigation";
 import { Card as AntdCard } from "antd";
+import Image from "next/image";
 
 import { Favorite } from "../../buttons/Favorite";
 import { UserCard } from "../../user";
 import { Banner } from "../../Banner";
 
 import { BannerVariant, User } from "@types";
+import { useStore } from "@stores";
 
 import styles from "./styles.module.scss";
 
 type CardProps = {
-  id: number | string;
+  id: number;
   title: string;
   price: string;
-  image?: StaticImageData;
+  image?: string;
   banner?: BannerVariant | string;
-  isFavorite?: boolean;
+  // isFavorite?: boolean;
   isYour?: boolean;
   height?: number | string;
   width?: number | string;
-  cardWidth?: number | string;
-  user?: User;
+  heightImg?: number;
+  widthImg?: number;
+  user?: any;
   margin?: number | string;
 };
 
@@ -37,16 +40,19 @@ export const Card = ({
   image,
   title,
   price,
-  isFavorite,
+  // isFavorite,
   isYour,
-  banner,
+  // banner,
   height,
+  heightImg,
+  widthImg,
   width,
-  cardWidth,
   user,
   margin,
 }: CardProps) => {
   const router = useRouter();
+  const { userStore } = useStore();
+  const { cardDelete, showCard } = userStore;
 
   const handleClick = () => {
     router.push(`/property/ad/show?id=${id}`);
@@ -54,12 +60,16 @@ export const Card = ({
 
   const handleEdit = (event: React.MouseEvent) => {
     event.stopPropagation(); // Добавлено для предотвращения всплытия события
-
     //отпрвка id-шки
+    showCard({ id: Number(id) });
+
+    router.push(`/property/ad/edit?id=${id}`);
   };
 
   const handleDelete = (event: React.MouseEvent) => {
     event.stopPropagation(); // Добавлено для предотвращения всплытия события
+
+    cardDelete({ id });
 
     //отпрвка id-шки
   };
@@ -69,7 +79,7 @@ export const Card = ({
       onClick={handleClick}
       className={styles.card}
       hoverable
-      style={{ width: cardWidth ? cardWidth : 340, height: height }}
+      style={{ width: width ? width : 340, height: height }}
       actions={
         isYour
           ? [
@@ -87,12 +97,14 @@ export const Card = ({
           <div className={styles.card_photo}>
             <Image
               className={styles.card_photo_img}
-              style={{ width: width, height: height }}
+              style={{ width: widthImg, height: heightImg }}
+              width={widthImg}
+              height={heightImg}
               alt={title}
               src={image}
             />
-            {banner && <Banner variant={banner} />}
-            {isFavorite && <Favorite id={id} />}
+            {/* {banner && <Banner variant={banner} />} */}
+            {/* {isFavorite && <Favorite id={id} />} */}
           </div>
         ) : (
           <div
@@ -105,7 +117,7 @@ export const Card = ({
             }}
             className={styles.card_photo}
           >
-            <PictureOutlined style={{ fontSize: 100, color: "#888b97" }} />
+            <HomeOutlined style={{ fontSize: 80, color: "#888b97" }} />
           </div>
         )
       }
@@ -115,7 +127,7 @@ export const Card = ({
         title={title}
         description={price}
       />
-      {user && (
+      {!isYour && user && (
         <div style={{ marginTop: 20 }}>
           <UserCard user={user} />
         </div>

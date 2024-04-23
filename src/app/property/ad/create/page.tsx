@@ -5,6 +5,6 @@ export const metadata: Metadata = {
   title: "Hounter | Create Ad",
 };
 
-export default function PropertyPage() {
+export default function CreateAdPage() {
   return <CreateAd />;
 }

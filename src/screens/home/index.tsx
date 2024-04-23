@@ -17,7 +17,7 @@ import {
   Card,
 } from "@components";
 
-import { bttns, cards, partners, scrollingData } from "./config";
+import { bttns, partners, scrollingData } from "./config";
 import styles from "./styles.module.scss";
 
 const HomeComponent = () => {
@@ -30,7 +30,6 @@ const HomeComponent = () => {
     getCards();
     fetchCountries();
   }, []);
-  console.log(23213132, cards);
 
   const preview = ["Find The Place To\nLive ", "Your Dreams", "\nEasily Here"];
   const desription =
@@ -40,6 +39,8 @@ const HomeComponent = () => {
   const partnership = "Our Partnership";
   const recom = "Our Recommendation";
   const feature = "Featured House";
+
+  console.log("cards", cards);
 
   return (
     <div className={styles.page}>
@@ -116,12 +117,16 @@ const HomeComponent = () => {
             <div className={styles.items}>
               <Card
                 margin={"100px 120px"}
-                isFavorite
+                // isFavorite
                 banner={banner}
                 image={image}
+                width={"100%"}
+                height={"100%"}
+                widthImg={300}
+                heightImg={200}
                 price={price}
                 title={title}
-                // user={user}s
+                user={user}
                 key={id}
                 id={id}
               />

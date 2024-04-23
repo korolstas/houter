@@ -30,7 +30,6 @@ const FormPropertyComponent = () => {
   }));
 
   const onFinish = (data: FormPropertyProps) => {
-    console.log(21212, data);
     message.success("Account uploaded successfully");
   };
 

@@ -7,11 +7,10 @@ export type User = {
   firstName: string;
   lastName: string;
   email: string;
-  title?: string;
-  imgUrl?: string | StaticImport;
   phone?: string;
-  birthday?: string;
   location?: string;
   work?: string;
-  favorites?: number[];
+  // imgUrl?: string | StaticImport;
+  // title?: string;
+  // favorites?: number[];
 };

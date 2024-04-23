@@ -25,8 +25,6 @@ const FormLoginComponent = () => {
   const { fetchAuth, user } = userStore;
 
   useEffect(() => {
-    console.log(13132, user);
-
     if (user) router.push("/", { scroll: false });
   }, [user]);
 

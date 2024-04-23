@@ -1,16 +1,24 @@
 "use client";
 
-import { Button, ConfigProvider } from "antd";
 import { PlusOutlined } from "@ant-design/icons";
+import { Button, ConfigProvider } from "antd";
+import { observer } from "mobx-react-lite";
+import { useEffect } from "react";
 import Link from "next/link";
 
 import { Card, ProfileLayout } from "@components";
-
-import { cards } from "@screens/home/config";
+import { useStore } from "@stores";
 
 import styles from "./styles.module.scss";
 
-export const MyProperty = () => {
+const MyPropertyComponent = () => {
+  const { userStore } = useStore();
+  const { userProfile, cards, user } = userStore;
+
+  useEffect(() => {
+    userProfile();
+  }, []);
+
   return (
     <ProfileLayout>
       <h1 className={styles.title}>Your Last Propeties</h1>
@@ -22,9 +30,11 @@ export const MyProperty = () => {
               title={title}
               price={price}
               image={image}
-              cardWidth={"50%"}
-              height={200}
-              width={"100%"}
+              user={user}
+              width={250}
+              height={"100%"}
+              widthImg={250}
+              heightImg={200}
               key={id}
               id={id}
             />
@@ -55,3 +65,5 @@ export const MyProperty = () => {
     </ProfileLayout>
   );
 };
+
+export const MyProperty = observer(MyPropertyComponent);

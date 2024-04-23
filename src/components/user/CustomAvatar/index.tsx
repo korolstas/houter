@@ -10,11 +10,13 @@ type AvatarProps = {
   id?: string | number;
   style?: CSSProperties;
   image?: string | StaticImport;
+  isName?: boolean;
 };
 
 export const CustomAvatar = ({
   firstName,
   lastName,
+  isName,
   image,
   style,
   id,
@@ -42,7 +44,7 @@ export const CustomAvatar = ({
 
   return (
     <>
-      {firstName && lastName && `${firstName} ${lastName}`}
+      {isName && firstName && lastName && `${firstName} ${lastName}`}
       <div className={styles.avatar_icon} style={avatarStyle}>
         {image ? (
           <Image className={styles.avatar_icon_img} src={image} alt="avatar" />

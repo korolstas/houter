@@ -1,14 +1,22 @@
 "use client";
 
-import { Input } from "antd";
 import { observer } from "mobx-react-lite";
+import { useEffect } from "react";
+import { Input } from "antd";
 
 import { AntdProvider, Card, SideFilter } from "@components";
-import { cards } from "@screens/home/config";
+import { useStore } from "@stores";
 
 import styles from "./styles.module.scss";
 
 const PropertyComponent = () => {
+  const { userStore } = useStore();
+  const { cards, getCards } = userStore;
+
+  useEffect(() => {
+    getCards();
+  }, []);
+
   return (
     <div className={styles.display}>
       <AntdProvider>
@@ -31,14 +39,15 @@ const PropertyComponent = () => {
                 {cards.map(({ image, title, price, user, banner, id }) => {
                   return (
                     <Card
-                      isFavorite
-                      banner={banner}
+                      // isFavorite
+                      // banner={banner}
                       title={title}
                       price={price}
                       image={image}
-                      height={200}
-                      cardWidth={"30%"}
-                      width={"100%"}
+                      width={250}
+                      height={"100%"}
+                      widthImg={250}
+                      heightImg={200}
                       user={user}
                       key={id}
                       id={id}

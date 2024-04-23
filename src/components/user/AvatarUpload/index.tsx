@@ -11,17 +11,6 @@ type AvatarUploadsProps = {
 };
 
 export const AvatarUpload = ({ imgUrl, isDisabled }: AvatarUploadsProps) => {
-  const onChange = (info: any) => {
-    if (info.file.status !== "uploading") {
-      console.log(info.file, info.fileList);
-    }
-    if (info.file.status === "done") {
-      message.success(`${info.file.name} file uploaded successfully`);
-    } else if (info.file.status === "error") {
-      message.error(`${info.file.name} file upload failed.`);
-    }
-  };
-
   return imgUrl ? (
     <Image
       src={imgUrl}
@@ -32,7 +21,6 @@ export const AvatarUpload = ({ imgUrl, isDisabled }: AvatarUploadsProps) => {
   ) : (
     <Button
       disabled={isDisabled}
-      onChange={onChange}
       className={`${styles.avatar} ${styles.center}`}
     >
       <div className={`${styles.avatar_box} ${styles.center}`}>
