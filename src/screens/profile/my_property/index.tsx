@@ -6,7 +6,7 @@ import { observer } from "mobx-react-lite";
 import { useEffect } from "react";
 import Link from "next/link";
 
-import { Card, ProfileLayout } from "@components";
+import { AntdProvider, Card, ProfileLayout } from "@components";
 import { useStore } from "@stores";
 
 import styles from "./styles.module.scss";
@@ -21,7 +21,28 @@ const MyPropertyComponent = () => {
 
   return (
     <ProfileLayout>
-      <h1 className={styles.title}>Your Last Propeties</h1>
+      <div>
+        <h1 className={styles.title}>Your Last Propeties</h1>
+        <AntdProvider>
+          <Link href={"/property/ad/create"}>
+            <Button
+              type="primary"
+              style={{
+                width: "150px",
+                padding: 20,
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
+                gap: 10,
+                fontFamily: "Lexend",
+              }}
+              className={`${styles.avatar} ${styles.center}`}
+            >
+              <div className={`${styles.avatar_box}`}>Add Ad</div>
+            </Button>
+          </Link>
+        </AntdProvider>
+      </div>
       <div className={styles.propeties_items}>
         {cards.map(({ image, price, title, id }) => {
           return (
@@ -40,27 +61,6 @@ const MyPropertyComponent = () => {
             />
           );
         })}
-
-        <ConfigProvider
-          theme={{
-            components: {
-              Button: {
-                colorPrimary: "#1b1c57",
-                colorPrimaryActive: "#1b1c57",
-                colorPrimaryHover: "#1b1c57",
-              },
-            },
-          }}
-        >
-          <Link href={"/property/ad/create"}>
-            <Button className={`${styles.avatar} ${styles.center}`}>
-              <div className={`${styles.avatar_box}`}>
-                <PlusOutlined />
-                Add Item
-              </div>
-            </Button>
-          </Link>
-        </ConfigProvider>
       </div>
     </ProfileLayout>
   );

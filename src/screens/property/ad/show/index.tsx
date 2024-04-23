@@ -4,7 +4,7 @@ import { useRouter, useSearchParams } from "next/navigation";
 import { observer } from "mobx-react-lite";
 import { useEffect } from "react";
 import Image from "next/image";
-import { Button } from "antd";
+import { Button, message } from "antd";
 import {
   PictureOutlined,
   SettingOutlined,
@@ -41,6 +41,7 @@ const ShowAdComponent = () => {
     cardDelete({ id: Number(id) });
 
     router.push(`/profile/my_property`);
+    message.success("delete successfully");
   };
 
   return (

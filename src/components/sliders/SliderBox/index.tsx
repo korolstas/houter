@@ -10,6 +10,7 @@ import { SvgSwitcher } from "../../SvgSwitcher";
 import { Button } from "../../buttons";
 
 import styles from "./styles.module.scss";
+import { AntdProvider } from "@/components/AntdProvider";
 
 type SliderProps = {
   children: ReactNode[];
@@ -60,22 +61,24 @@ const SliderComponent = ({
           <div className={styles.slider_header}>
             <h2>{header}</h2>
 
-            <div className={styles.slider_header_bttns}>
-              {bttns &&
-                bttns.map(({ name }) => {
-                  return (
-                    <Button
-                      isActive={bttnType === name ? true : false}
-                      onClick={() => handlerSearch(name)}
-                      variant={"secondary"}
-                      key={name}
-                    >
-                      <SvgSwitcher variant={name.toLowerCase()} />
-                      {name}
-                    </Button>
-                  );
-                })}
-            </div>
+            <AntdProvider>
+              <div className={styles.slider_header_bttns}>
+                {bttns &&
+                  bttns.map(({ name }) => {
+                    return (
+                      <Button
+                        isActive={bttnType === name ? true : false}
+                        onClick={() => handlerSearch(name)}
+                        variant={"secondary"}
+                        key={name}
+                      >
+                        <SvgSwitcher variant={name.toLowerCase()} />
+                        {name}
+                      </Button>
+                    );
+                  })}
+              </div>
+            </AntdProvider>
             <div className={styles.slider_header_arrows}>
               <Button
                 onClick={handlerPrev}

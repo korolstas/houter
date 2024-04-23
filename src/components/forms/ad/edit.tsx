@@ -13,6 +13,7 @@ import { AntdProvider } from "@components";
 import { useStore } from "@stores";
 
 import styles from "../login/styles.module.scss";
+import { useRouter } from "next/navigation";
 
 type FormCreateAdProps = {
   price: number;
@@ -24,18 +25,21 @@ type FormCreateAdProps = {
 };
 
 const FormEditAdComponent = ({ id }: { id?: string | null }) => {
+  const router = useRouter();
   const { userStore, countriesStore } = useStore();
   const { cardUpload, card } = userStore;
   const { fetchCountries, countries, isLoading } = countriesStore;
 
   useEffect(() => {
     if (!countries) fetchCountries();
-  }, [card]);
+  }, [card, isLoading]);
 
   console.log("car12123212d", card);
 
   const onFinish = (data: FormCreateAdProps) => {
     cardUpload(selectedFile, { id: Number(id), ...data });
+    message.success("Uploaded successfully");
+    router.push(`/property/ad/show?id=${id}`);
   };
 
   const optionsLocation = countries.map(({ name }) => ({

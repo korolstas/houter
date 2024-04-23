@@ -125,7 +125,7 @@ export const Card = ({
       <Meta
         style={{ fontFamily: "Lexend" }}
         title={title}
-        description={price}
+        description={`$ ${price}`}
       />
       {!isYour && user && (
         <div style={{ marginTop: 20 }}>
