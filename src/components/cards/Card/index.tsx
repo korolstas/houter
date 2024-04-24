@@ -70,7 +70,7 @@ export const Card = ({
     event.stopPropagation(); // Добавлено для предотвращения всплытия события
 
     cardDelete({ id });
-
+    router.refresh();
     //отпрвка id-шки
   };
 
