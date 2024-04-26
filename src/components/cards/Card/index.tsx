@@ -68,7 +68,7 @@ export const Card = ({
     event.stopPropagation();
     deleteCard({ id });
 
-    router.push(`/profile/my_property?id=${id}`);
+    router.refresh();
   };
 
   return (
