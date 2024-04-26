@@ -27,9 +27,12 @@ type FormCreateAdProps = {
 
 const FormCreateAdComponent = () => {
   const router = useRouter();
-  const { userStore, countriesStore } = useStore();
-  const { user, createCard, uploadImage } = userStore;
-  const { fetchCountries, countries, isLoading } = countriesStore;
+  const { userStore, countriesStore, cardStore } = useStore();
+  const { fetchCountries, countries, isLoadingCountries } = countriesStore;
+  const { createCard, isLoadingCard } = cardStore;
+  const { user } = userStore;
+
+  const isLoading = isLoadingCard || isLoadingCountries;
 
   useEffect(() => {
     if (!countries) fetchCountries();
@@ -37,7 +40,7 @@ const FormCreateAdComponent = () => {
 
   const onFinish = (data: FormCreateAdProps) => {
     if (selectedFile) {
-      createCard({ file: selectedFile, ...data });
+      createCard({ id: user.id, file: selectedFile, ...data });
       message.success("Create ad successfully");
       router.push("/profile/my_property");
     }

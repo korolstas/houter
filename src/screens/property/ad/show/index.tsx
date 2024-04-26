@@ -2,9 +2,9 @@
 
 import { useRouter, useSearchParams } from "next/navigation";
 import { observer } from "mobx-react-lite";
+import { Button, message } from "antd";
 import { useEffect } from "react";
 import Image from "next/image";
-import { Button, message } from "antd";
 import {
   PictureOutlined,
   SettingOutlined,
@@ -19,8 +19,9 @@ import styles from "./styles.module.scss";
 
 const ShowAdComponent = () => {
   const router = useRouter();
-  const { userStore } = useStore();
-  const { showCard, card, user, cardDelete } = userStore;
+  const { userStore, cardStore } = useStore();
+  const { card, showCard, deleteCard } = cardStore;
+  const { user } = userStore;
 
   const searchParams = useSearchParams();
   const id = searchParams.get("id");
@@ -38,7 +39,7 @@ const ShowAdComponent = () => {
   };
 
   const handlerDelete = () => {
-    cardDelete({ id: Number(id) });
+    deleteCard({ id: Number(id) });
 
     router.push(`/profile/my_property`);
     message.success("delete successfully");
@@ -52,10 +53,10 @@ const ShowAdComponent = () => {
             {card.image ? (
               <div className={styles.page_box_image}>
                 <Image
-                  width={200}
-                  height={200}
                   src={card.image}
                   alt={card.title}
+                  height={200}
+                  width={200}
                 />
               </div>
             ) : (
@@ -63,9 +64,9 @@ const ShowAdComponent = () => {
                 style={{
                   display: "flex",
                   flexDirection: "column",
+                  width: "max-content",
                   fontFamily: "Lexend",
                   margin: 200,
-                  width: "max-content",
                 }}
                 className={styles.card_photo}
               >
@@ -85,7 +86,7 @@ const ShowAdComponent = () => {
                 <div className={styles.location}>
                   {card.location}; {card.street}
                 </div>
-                {/* <div className={styles.data}>12 Apr., 09:23</div> */}
+                <div className={styles.data}>12 Apr., 09:23</div>
               </div>
             </div>
             <div className={styles.page_info_container}>
@@ -115,33 +116,33 @@ const ShowAdComponent = () => {
               {isYour && (
                 <div className={styles.actions}>
                   <Button
+                    type="primary"
+                    onClick={handlerEdit}
                     icon={<SettingOutlined />}
                     style={{
                       display: "flex",
                       alignItems: "center",
                       justifyContent: "center",
+                      fontFamily: "Lexend",
                       padding: "20px",
                       gap: 8,
-                      fontFamily: "Lexend",
                     }}
-                    type="primary"
-                    onClick={handlerEdit}
                   >
                     Edit
                   </Button>
                   <Button
+                    danger
+                    type="primary"
+                    onClick={handlerDelete}
                     icon={<DeleteOutlined />}
                     style={{
                       display: "flex",
                       alignItems: "center",
                       justifyContent: "center",
+                      fontFamily: "Lexend",
                       padding: "20px",
                       gap: 8,
-                      fontFamily: "Lexend",
                     }}
-                    danger
-                    type="primary"
-                    onClick={handlerDelete}
                   >
                     Delete
                   </Button>

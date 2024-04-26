@@ -1,6 +1,7 @@
-import { Button, Checkbox, Form, Input } from "antd";
+import { Button, Form, Input } from "antd";
 import { useRouter } from "next/navigation";
-import Link from "next/link";
+import { observer } from "mobx-react-lite";
+import { useEffect } from "react";
 import {
   SafetyCertificateOutlined,
   SwapRightOutlined,
@@ -11,8 +12,6 @@ import { AntdProvider } from "@components";
 import { useStore } from "@stores";
 
 import styles from "./styles.module.scss";
-import { observer } from "mobx-react-lite";
-import { useEffect } from "react";
 
 type FormLogin = {
   password: string;

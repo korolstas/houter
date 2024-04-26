@@ -1,17 +1,13 @@
-import {
-  DeleteOutlined,
-  HomeOutlined,
-  SettingOutlined,
-} from "@ant-design/icons";
-// import Image, { StaticImageData } from "next/image";
 import { useRouter } from "next/navigation";
 import { Card as AntdCard } from "antd";
 import Image from "next/image";
+import {
+  SettingOutlined,
+  DeleteOutlined,
+  HomeOutlined,
+} from "@ant-design/icons";
 
-import { Favorite } from "../../buttons/Favorite";
-import { UserCard } from "../../user";
-import { Banner } from "../../Banner";
-
+import { Banner, Favorite, UserCard } from "@components";
 import { BannerVariant, User } from "@types";
 import { useStore } from "@stores";
 
@@ -21,57 +17,58 @@ type CardProps = {
   id: number;
   title: string;
   price: string;
+  userCard: User;
   image?: string;
-  banner?: BannerVariant | string;
-  // isFavorite?: boolean;
   isYour?: boolean;
-  height?: number | string;
-  width?: number | string;
-  heightImg?: number;
   widthImg?: number;
-  user?: any;
+  heightImg?: number;
+  isFavorite?: boolean;
+  width?: number | string;
   margin?: number | string;
+  height?: number | string;
+  banner?: BannerVariant | string;
 };
 
 const { Meta } = AntdCard;
 
 export const Card = ({
   id,
-  image,
   title,
   price,
-  // isFavorite,
-  isYour,
-  // banner,
-  height,
-  heightImg,
-  widthImg,
+  image,
   width,
-  user,
+  height,
+  banner,
+  isYour,
   margin,
+  userCard,
+  widthImg,
+  heightImg,
+  isFavorite,
 }: CardProps) => {
   const router = useRouter();
-  const { userStore } = useStore();
-  const { cardDelete, showCard } = userStore;
+  const { cardStore, userStore } = useStore();
+  const { deleteCard, showCard } = cardStore;
+  const { user } = userStore;
+
+  const isYourCard = userCard?.id === user?.id;
 
   const handleClick = () => {
     router.push(`/property/ad/show?id=${id}`);
   };
 
   const handleEdit = (event: React.MouseEvent) => {
-    event.stopPropagation(); // Добавлено для предотвращения всплытия события
-    //отпрвка id-шки
+    event.stopPropagation();
     showCard({ id: Number(id) });
 
     router.push(`/property/ad/edit?id=${id}`);
   };
 
   const handleDelete = (event: React.MouseEvent) => {
-    event.stopPropagation(); // Добавлено для предотвращения всплытия события
+    event.stopPropagation();
+    deleteCard({ id });
 
-    cardDelete({ id });
-
-    //отпрвка id-шки
+    router.push(`/profile/my_property?id=${id}`);
   };
 
   return (
@@ -96,24 +93,24 @@ export const Card = ({
         image ? (
           <div className={styles.card_photo}>
             <Image
-              className={styles.card_photo_img}
-              style={{ width: widthImg, height: heightImg }}
+              src={image}
+              alt={title}
               width={widthImg}
               height={heightImg}
-              alt={title}
-              src={image}
+              className={styles.card_photo_img}
+              style={{ width: widthImg, height: heightImg }}
             />
-            {/* {banner && <Banner variant={banner} />} */}
-            {/* {isFavorite && <Favorite id={id} />} */}
+            {!isYourCard && isFavorite && <Favorite id={id} />}
+            {banner && <Banner variant={banner} />}
           </div>
         ) : (
           <div
             style={{
               display: "flex",
               flexDirection: "column",
+              width: "max-content",
               fontFamily: "Lexend",
               margin: margin,
-              width: "max-content",
             }}
             className={styles.card_photo}
           >
@@ -123,13 +120,13 @@ export const Card = ({
       }
     >
       <Meta
-        style={{ fontFamily: "Lexend" }}
         title={title}
         description={`$ ${price}`}
+        style={{ fontFamily: "Lexend" }}
       />
-      {!isYour && user && (
+      {!isYour && userCard && (
         <div style={{ marginTop: 20 }}>
-          <UserCard user={user} />
+          <UserCard user={userCard} />
         </div>
       )}
     </AntdCard>

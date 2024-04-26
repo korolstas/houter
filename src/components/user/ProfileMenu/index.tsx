@@ -10,12 +10,15 @@ import { useStore } from "@stores";
 import styles from "./styles.module.scss";
 
 const ProfileMenuComponent = () => {
-  const { userStore } = useStore();
-  const { menuType, setMenuType, clearUser } = userStore;
+  const { userStore, buttonStore } = useStore();
+  const { menuType, setMenuType } = buttonStore;
+  const { clearUser } = userStore;
 
   const items = configMenuType.map(({ label, key, href, icon, danger }) => {
     return {
       key: key,
+      icon: icon,
+      danger: danger,
       label: (
         <Link
           onClick={!danger ? () => setMenuType(key) : clearUser}
@@ -24,8 +27,6 @@ const ProfileMenuComponent = () => {
           {label}
         </Link>
       ),
-      icon: icon,
-      danger: danger,
     };
   });
 
@@ -42,10 +43,10 @@ const ProfileMenuComponent = () => {
       }}
     >
       <Menu
-        className={styles.menu}
         defaultSelectedKeys={[menuType]}
-        mode="inline"
+        className={styles.menu}
         items={items}
+        mode="inline"
       />
     </ConfigProvider>
   );

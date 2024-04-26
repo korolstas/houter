@@ -1,5 +1,4 @@
 import { observer } from "mobx-react-lite";
-import { type MenuProps } from "antd";
 import Link from "next/link";
 
 import { useStore } from "@stores";
@@ -14,8 +13,9 @@ import { ScrollHeader } from "../ScrollHeader";
 import { UserDropdown } from "../../user";
 
 const HeaderComponent = () => {
-  const { userStore } = useStore();
-  const { user, clearUser, setMenuType } = userStore;
+  const { userStore, buttonStore } = useStore();
+  const { user, clearUser } = userStore;
+  const { setMenuType } = buttonStore;
 
   const bttn_text = "Sign In!";
 
@@ -35,6 +35,8 @@ const HeaderComponent = () => {
     ({ label, key, href, icon, danger }) => {
       return {
         key: key,
+        icon: icon,
+        danger: danger,
         label: (
           <Link
             onClick={danger ? clearUser : () => setMenuType(key)}
@@ -43,8 +45,6 @@ const HeaderComponent = () => {
             {label}
           </Link>
         ),
-        icon: icon,
-        danger: danger,
       };
     }
   );
@@ -69,8 +69,8 @@ const HeaderComponent = () => {
                       <Dropdown
                         icon={<SvgSwitcher variant={"arrow"} />}
                         overlayClassName={"dark"}
-                        variant={"dark"}
                         items={itemsDownMenu}
+                        variant={"dark"}
                         key={label}
                       >
                         {label}

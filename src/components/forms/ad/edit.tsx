@@ -26,20 +26,33 @@ type FormCreateAdProps = {
 
 const FormEditAdComponent = ({ id }: { id?: string | null }) => {
   const router = useRouter();
-  const { userStore, countriesStore } = useStore();
-  const { cardUpload, card } = userStore;
-  const { fetchCountries, countries, isLoading } = countriesStore;
+  const { countriesStore, cardStore } = useStore();
+  const {
+    clearSuccessCard,
+    isLoadingCard,
+    successCard,
+    errorCard,
+    editCard,
+    card,
+  } = cardStore;
+  const { fetchCountries, countries, isLoadingCountries } = countriesStore;
+
+  const isLoading = isLoadingCard || isLoadingCountries;
 
   useEffect(() => {
-    if (!countries) fetchCountries();
-  }, [card, isLoading]);
+    if (successCard) {
+      message.success(successCard);
+      clearSuccessCard();
 
-  console.log("car12123212d", card);
+      router.push(`/property/ad/show?id=${id}`);
+    } else if (errorCard) message.error(errorCard);
+
+    if (!countries) fetchCountries();
+  }, [card, isLoading, successCard, errorCard]);
 
   const onFinish = (data: FormCreateAdProps) => {
-    cardUpload(selectedFile, { id: Number(id), ...data });
-    message.success("Uploaded successfully");
-    router.push(`/property/ad/show?id=${id}`);
+    const newData = { id: Number(id), ...data };
+    editCard({ file: selectedFile, data: newData });
   };
 
   const optionsLocation = countries.map(({ name }) => ({
@@ -180,7 +193,7 @@ const FormEditAdComponent = ({ id }: { id?: string | null }) => {
           </div>
 
           <Form.Item className={styles.form_item} name="description">
-            <Input.TextArea size="middle" />
+            <Input.TextArea autoSize size="middle" />
           </Form.Item>
 
           <div className={styles.placeholder}>

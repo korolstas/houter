@@ -1,7 +1,8 @@
 import { makeAutoObservable } from "mobx";
 
-export class SliderStore {
+export class ButtonStore {
   bttnType: string = "House";
+  menuType: string = "";
 
   constructor() {
     makeAutoObservable(this);
@@ -9,5 +10,9 @@ export class SliderStore {
 
   setBttnType = (type: string) => {
     this.bttnType = type;
+  };
+
+  setMenuType = (menuType: string) => {
+    this.menuType = menuType;
   };
 }

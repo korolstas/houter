@@ -21,10 +21,9 @@ import { bttns, partners, scrollingData } from "./config";
 import styles from "./styles.module.scss";
 
 const HomeComponent = () => {
-  const { sliderStore, countriesStore, userStore } = useStore();
-  const { bttnType } = sliderStore;
-  const { fetchCountries, countries, isLoading } = countriesStore;
-  const { getCards, cards } = userStore;
+  const { countriesStore, cardStore } = useStore();
+  const { fetchCountries, countries, isLoadingCountries } = countriesStore;
+  const { getCards, cards } = cardStore;
 
   useEffect(() => {
     getCards();
@@ -39,8 +38,6 @@ const HomeComponent = () => {
   const partnership = "Our Partnership";
   const recom = "Our Recommendation";
   const feature = "Featured House";
-
-  console.log("cards", cards);
 
   return (
     <div className={styles.page}>
@@ -109,26 +106,26 @@ const HomeComponent = () => {
       <SliderBox
         style={{ gap: "40px", paddingLeft: "40px" }}
         header={feature}
-        top={recom}
         bttns={bttns}
+        top={recom}
       >
         {cards.map(({ image, title, price, user, banner, id }) => {
           return (
             <div className={styles.items}>
               <Card
-                margin={"100px 120px"}
-                // isFavorite
-                banner={banner}
-                image={image}
+                id={id}
+                key={id}
+                isFavorite
                 width={"100%"}
                 height={"100%"}
-                widthImg={300}
-                heightImg={200}
                 price={price}
                 title={title}
-                user={user}
-                key={id}
-                id={id}
+                image={image}
+                widthImg={300}
+                heightImg={200}
+                userCard={user}
+                banner={banner}
+                margin={"100px 120px"}
               />
             </div>
           );
@@ -145,7 +142,6 @@ const HomeComponent = () => {
           firstName: "Dianne",
           lastName: "Russell",
           email: "dianne_russell@gmail.com",
-          title: "Dianne Russell",
           imgUrl: dianne_russell,
           location: "Manchester, Kentucky",
           work: "Manager Director",

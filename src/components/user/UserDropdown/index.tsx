@@ -1,7 +1,7 @@
 import { Dropdown } from "@components";
+import { User } from "@types";
 
 import { CustomAvatar } from "../CustomAvatar";
-import { User } from "@types";
 
 type UserDropdownProps = {
   user: User;
@@ -14,8 +14,6 @@ type UserDropdownProps = {
 };
 
 export const UserDropdown = ({ user, items }: UserDropdownProps) => {
-  console.log("user", user);
-
   return (
     <Dropdown variant={"green"} items={items} overlayClassName={"green"}>
       <CustomAvatar

@@ -1,5 +1,5 @@
-import { Button, Dropdown, type MenuProps } from "antd";
 import { PhoneFilled } from "@ant-design/icons";
+import { Button, Dropdown } from "antd";
 import Image from "next/image";
 
 import { AntdProvider, CustomAvatar } from "@components";
@@ -14,7 +14,7 @@ type UserCardProps = {
 };
 
 export const UserCard = ({ user, isContactNow, size }: UserCardProps) => {
-  const items: MenuProps["items"] = [
+  const items = [
     {
       key: 1,
       label: <label>{user?.phone}</label>,
@@ -53,13 +53,13 @@ export const UserCard = ({ user, isContactNow, size }: UserCardProps) => {
                 display: "flex",
                 alignItems: "center",
                 justifyContent: "center",
-                gap: "10px",
-                borderRadius: "50px",
                 width: "max-content",
-                padding: "22px",
+                borderRadius: "50px",
                 fontFamily: "Lexend",
-                fontWeight: 500,
                 fontSize: "14px",
+                padding: "22px",
+                fontWeight: 500,
+                gap: 10,
               }}
               icon={<PhoneFilled style={{ fontSize: "20px" }} />}
             >

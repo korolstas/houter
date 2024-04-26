@@ -1,18 +1,9 @@
 "use client";
 
+import { Tooltip, message, Button, Select, Input, Form } from "antd";
 import { QuestionCircleOutlined, MailOutlined } from "@ant-design/icons";
 import { observer } from "mobx-react-lite";
 import { useEffect } from "react";
-import dayjs from "dayjs";
-import {
-  DatePicker,
-  Tooltip,
-  message,
-  Button,
-  Select,
-  Input,
-  Form,
-} from "antd";
 
 import { AntdProvider, UserCard } from "@components";
 import { useStore } from "@stores";
@@ -21,19 +12,21 @@ import styles from "./styles.module.scss";
 
 type FormProfile = {
   id: string | number;
-  firstName: string;
-  lastName: string;
   email: string;
+  lastName: string;
+  firstName: string;
   img?: string | null;
   work?: string | null;
-  location?: string | null;
   phone?: string | null;
+  location?: string | null;
 };
 
 const FormProfileComponent = () => {
   const { userStore, countriesStore } = useStore();
-  const { fetchCountries, countries, isLoading } = countriesStore;
-  const { user, updateUser } = userStore;
+  const { fetchCountries, countries, isLoadingCountries } = countriesStore;
+  const { user, updateUser, isLoadingUser } = userStore;
+
+  const isLoading = isLoadingUser || isLoadingCountries;
 
   useEffect(() => {
     if (!countries) fetchCountries();
@@ -42,12 +35,13 @@ const FormProfileComponent = () => {
   const onFinish = (data: FormProfile) => {
     updateUser({
       id: user.id,
-      phone: data.phone,
-      firstName: data.firstName,
-      lastName: data.lastName,
-      location: data.location,
       work: data.work,
+      phone: data.phone,
+      location: data.location,
+      lastName: data.lastName,
+      firstName: data.firstName,
     });
+
     message.success("Account uploaded successfully");
   };
 
@@ -55,9 +49,6 @@ const FormProfileComponent = () => {
     value: name,
     label: name,
   }));
-
-  // const disabledDate = (current: dayjs.Dayjs) =>
-  //   current && current.isAfter(dayjs(), "day");
 
   const initialValues = {
     firstName: user?.firstName,
@@ -86,8 +77,8 @@ const FormProfileComponent = () => {
             name="phone"
             rules={[
               {
-                // pattern: /^\d+$/i,
-                // message: "Invalid phone format",
+                pattern: /^\d+$/i,
+                message: "Invalid phone format",
               },
             ]}
           >
@@ -111,6 +102,9 @@ const FormProfileComponent = () => {
           >
             <Input
               disabled
+              size="large"
+              placeholder="Enter E-mail"
+              prefix={<MailOutlined style={{ paddingRight: "5px" }} />}
               suffix={
                 <Tooltip title="You specified this e-mail address during registration, it cannot be changed">
                   <QuestionCircleOutlined
@@ -118,9 +112,6 @@ const FormProfileComponent = () => {
                   />
                 </Tooltip>
               }
-              placeholder="Enter E-mail"
-              size="large"
-              prefix={<MailOutlined style={{ paddingRight: "5px" }} />}
             />
           </Form.Item>
         </div>
@@ -206,12 +197,12 @@ const FormProfileComponent = () => {
               <Form.Item name="location">
                 <Select
                   showSearch
+                  size="large"
                   loading={isLoading}
                   className={styles.item}
                   options={optionsLocation}
-                  style={{ fontFamily: "Lexend" }}
                   placeholder="Enter Location"
-                  size="large"
+                  style={{ fontFamily: "Lexend" }}
                 />
               </Form.Item>
               <label className={styles.descrioption}>
@@ -223,10 +214,10 @@ const FormProfileComponent = () => {
           <div>
             <Form.Item className={styles.form_item}>
               <Button
-                size="large"
-                type="primary"
-                htmlType="submit"
                 className={styles.button}
+                htmlType="submit"
+                type="primary"
+                size="large"
               >
                 Save changes
               </Button>

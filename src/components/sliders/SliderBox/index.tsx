@@ -28,8 +28,8 @@ const SliderComponent = ({
   style,
   top,
 }: SliderProps) => {
-  const { sliderStore } = useStore();
-  const { bttnType, setBttnType } = sliderStore;
+  const { buttonStore } = useStore();
+  const { bttnType, setBttnType } = buttonStore;
 
   const sliderRef = useRef<HTMLDivElement | null>(null);
 

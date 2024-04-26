@@ -10,15 +10,17 @@ import styles from "../login/styles.module.scss";
 type FormPropertyProps = {
   price_from?: string;
   price_to?: string;
-  rent?: string;
-  realty?: string;
   location?: string;
+  realty?: string;
   amount?: string;
+  rent?: string;
 };
 
 const FormPropertyComponent = () => {
   const { countriesStore } = useStore();
-  const { fetchCountries, countries, isLoading } = countriesStore;
+  const { fetchCountries, countries, isLoadingCountries } = countriesStore;
+
+  const isLoading = isLoadingCountries;
 
   useEffect(() => {
     fetchCountries();
@@ -42,9 +44,9 @@ const FormPropertyComponent = () => {
       <Space.Compact>
         <Form.Item className={styles.form_item} name="price_from">
           <Input
+            style={{ fontFamily: "Lexend" }}
             prefix={<DollarOutlined />}
             placeholder="from"
-            style={{ fontFamily: "Lexend" }}
           />
         </Form.Item>
 
@@ -94,11 +96,11 @@ const FormPropertyComponent = () => {
       <Form.Item className={styles.form_item} name="location">
         <Select
           showSearch
+          size="middle"
           loading={isLoading}
           options={optionsLocation}
-          style={{ fontFamily: "Lexend", width: "100%" }}
           placeholder="Enter Location"
-          size="middle"
+          style={{ fontFamily: "Lexend", width: "100%" }}
         ></Select>
       </Form.Item>
 
@@ -121,17 +123,17 @@ const FormPropertyComponent = () => {
 
       <Form.Item className={styles.form_item}>
         <Button
-          style={{
-            width: "100%",
-            display: "flex",
-            justifyContent: "center",
-            alignItems: "center",
-            flexFlow: "row-reverse",
-            gap: 10,
-          }}
           type="primary"
           htmlType="submit"
           icon={<SendOutlined />}
+          style={{
+            width: "100%",
+            display: "flex",
+            alignItems: "center",
+            flexFlow: "row-reverse",
+            justifyContent: "center",
+            gap: 10,
+          }}
         >
           Confirm
         </Button>

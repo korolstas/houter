@@ -1,6 +1,7 @@
 import { Button, Form, Input, message } from "antd";
 import { useRouter } from "next/navigation";
 import { observer } from "mobx-react-lite";
+import { useEffect } from "react";
 import {
   SafetyCertificateOutlined,
   SwapRightOutlined,
@@ -12,7 +13,6 @@ import { AntdProvider } from "@components";
 import { useStore } from "@stores";
 
 import styles from "./styles.module.scss";
-import { useEffect } from "react";
 
 type FormSignUp = {
   firstName: string;
@@ -29,7 +29,7 @@ const FormSignUpComponent = () => {
   useEffect(() => {
     if (user) {
       message.success("Account is creating successfully");
-      router.push("/", { scroll: false });
+      router.push("/");
     }
   }, [user]);
 

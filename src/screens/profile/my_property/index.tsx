@@ -1,9 +1,8 @@
 "use client";
 
-import { PlusOutlined } from "@ant-design/icons";
-import { Button, ConfigProvider } from "antd";
 import { observer } from "mobx-react-lite";
 import { useEffect } from "react";
+import { Button } from "antd";
 import Link from "next/link";
 
 import { AntdProvider, Card, ProfileLayout } from "@components";
@@ -48,16 +47,16 @@ const MyPropertyComponent = () => {
           return (
             <Card
               isYour
+              id={id}
+              key={id}
+              width={250}
+              height={"100%"}
               title={title}
               price={price}
               image={image}
-              user={user}
-              width={250}
-              height={"100%"}
               widthImg={250}
               heightImg={200}
-              key={id}
-              id={id}
+              userCard={user}
             />
           );
         })}

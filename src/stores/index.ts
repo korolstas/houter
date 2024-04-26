@@ -3,19 +3,22 @@
 import { createContext, useContext } from "react";
 
 import { CountriesStore } from "./countries";
-import { SliderStore } from "./slider";
+import { ButtonStore } from "./button";
+import { CardStore } from "./cards";
 import { UserStore } from "./user";
 
 interface Store {
   countriesStore: CountriesStore;
-  sliderStore: SliderStore;
+  buttonStore: ButtonStore;
   userStore: UserStore;
+  cardStore: CardStore;
 }
 
 const store: Store = {
   countriesStore: new CountriesStore(),
-  sliderStore: new SliderStore(),
+  buttonStore: new ButtonStore(),
   userStore: new UserStore(),
+  cardStore: new CardStore(),
 };
 
 const StoreContext = createContext(store);

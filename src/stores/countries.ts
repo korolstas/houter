@@ -4,15 +4,15 @@ import { getCharacters } from "@api";
 
 export class CountriesStore {
   countries: any[] = [];
-  isLoading = false;
-  error: string | undefined = undefined;
+  isLoadingCountries = false;
+  errorCountries: string | null = null;
 
   constructor() {
     makeAutoObservable(this);
   }
 
   fetchCountries = async () => {
-    this.isLoading = true;
+    this.isLoadingCountries = true;
 
     try {
       const response = await getCharacters.getCountries(
@@ -22,11 +22,11 @@ export class CountriesStore {
       runInAction(() => {
         const result = response.data;
         this.countries = result.data;
-        this.isLoading = false;
+        this.isLoadingCountries = false;
       });
     } catch (e: any) {
-      this.isLoading = false;
-      // this.error = e.response.data.error;
+      this.isLoadingCountries = false;
+      this.errorCountries = e.response.data.error;
       console.log(e);
     }
   };

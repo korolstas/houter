@@ -10,8 +10,8 @@ import { useStore } from "@stores";
 import styles from "./styles.module.scss";
 
 const PropertyComponent = () => {
-  const { userStore } = useStore();
-  const { cards, getCards } = userStore;
+  const { cardStore } = useStore();
+  const { getCards, cards } = cardStore;
 
   useEffect(() => {
     getCards();
@@ -39,18 +39,18 @@ const PropertyComponent = () => {
                 {cards.map(({ image, title, price, user, banner, id }) => {
                   return (
                     <Card
-                      // isFavorite
-                      // banner={banner}
-                      title={title}
-                      price={price}
-                      image={image}
+                      id={id}
+                      key={id}
+                      isFavorite
                       width={250}
                       height={"100%"}
+                      price={price}
+                      title={title}
+                      image={image}
                       widthImg={250}
                       heightImg={200}
-                      user={user}
-                      key={id}
-                      id={id}
+                      banner={banner}
+                      userCard={user}
                     />
                   );
                 })}
