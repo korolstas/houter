@@ -1,11 +1,6 @@
+import { SettingOutlined, DeleteOutlined } from "@ant-design/icons";
+import { Card as AntdCard, Image, Skeleton } from "antd";
 import { useRouter } from "next/navigation";
-import { Card as AntdCard } from "antd";
-import Image from "next/image";
-import {
-  SettingOutlined,
-  DeleteOutlined,
-  HomeOutlined,
-} from "@ant-design/icons";
 
 import { Banner, Favorite, UserCard } from "@components";
 import { BannerVariant, User } from "@types";
@@ -22,6 +17,7 @@ type CardProps = {
   isYour?: boolean;
   widthImg?: number;
   heightImg?: number;
+  isLoading?: boolean;
   isFavorite?: boolean;
   width?: number | string;
   margin?: number | string;
@@ -40,10 +36,10 @@ export const Card = ({
   height,
   banner,
   isYour,
-  margin,
   userCard,
   widthImg,
   heightImg,
+  isLoading,
   isFavorite,
 }: CardProps) => {
   const router = useRouter();
@@ -52,6 +48,7 @@ export const Card = ({
   const { user } = userStore;
 
   const isYourCard = userCard?.id === user?.id;
+  const isFavoriteCard = !isYourCard && isFavorite && user?.id;
 
   const handleClick = () => {
     router.push(`/property/ad/show?id=${id}`);
@@ -73,6 +70,7 @@ export const Card = ({
 
   return (
     <AntdCard
+      loading={isLoading}
       onClick={handleClick}
       className={styles.card}
       hoverable
@@ -90,31 +88,24 @@ export const Card = ({
           : []
       }
       cover={
-        image ? (
+        isLoading ? (
+          <Skeleton.Image
+            active={isLoading}
+            style={{ width: widthImg, height: heightImg }}
+          />
+        ) : (
           <div className={styles.card_photo}>
             <Image
               src={image}
               alt={title}
+              preview={false}
               width={widthImg}
               height={heightImg}
               className={styles.card_photo_img}
               style={{ width: widthImg, height: heightImg }}
             />
-            {!isYourCard && isFavorite && <Favorite id={id} />}
             {banner && <Banner variant={banner} />}
-          </div>
-        ) : (
-          <div
-            style={{
-              display: "flex",
-              flexDirection: "column",
-              width: "max-content",
-              fontFamily: "Lexend",
-              margin: margin,
-            }}
-            className={styles.card_photo}
-          >
-            <HomeOutlined style={{ fontSize: 80, color: "#888b97" }} />
+            {isFavoriteCard && <Favorite id={id} />}
           </div>
         )
       }

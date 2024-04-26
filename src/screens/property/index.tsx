@@ -11,7 +11,9 @@ import styles from "./styles.module.scss";
 
 const PropertyComponent = () => {
   const { cardStore } = useStore();
-  const { getCards, cards } = cardStore;
+  const { getCards, cards, isLoadingCard } = cardStore;
+
+  const isLoading = isLoadingCard;
 
   useEffect(() => {
     getCards();
@@ -51,6 +53,7 @@ const PropertyComponent = () => {
                       heightImg={200}
                       banner={banner}
                       userCard={user}
+                      isLoading={isLoading}
                     />
                   );
                 })}

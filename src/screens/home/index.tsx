@@ -23,7 +23,9 @@ import styles from "./styles.module.scss";
 const HomeComponent = () => {
   const { countriesStore, cardStore } = useStore();
   const { fetchCountries, countries, isLoadingCountries } = countriesStore;
-  const { getCards, cards } = cardStore;
+  const { getCards, cards, isLoadingCard } = cardStore;
+
+  const isLoading = isLoadingCountries || isLoadingCard;
 
   useEffect(() => {
     getCards();
@@ -64,8 +66,8 @@ const HomeComponent = () => {
               <div className={styles.input}>
                 <Select
                   showSearch
-                  style={{ width: "100%" }}
                   variant="borderless"
+                  style={{ width: "100%" }}
                   placeholder={inputPlaceHolder}
                   options={countries.map(({ name }) => ({
                     value: name,
@@ -75,6 +77,8 @@ const HomeComponent = () => {
               </div>
               <Link href="property?location={}">
                 <Button
+                  type="primary"
+                  icon={<RightOutlined style={{ fontSize: 16 }} />}
                   style={{
                     display: "flex",
                     alignItems: "center",
@@ -85,8 +89,6 @@ const HomeComponent = () => {
                     borderRadius: 35,
                     fontFamily: "Lexend",
                   }}
-                  type="primary"
-                  icon={<RightOutlined style={{ fontSize: 16 }} />}
                 >
                   {bttnSearch}
                 </Button>
@@ -125,7 +127,7 @@ const HomeComponent = () => {
                 heightImg={200}
                 userCard={user}
                 banner={banner}
-                margin={"100px 120px"}
+                isLoading={isLoading}
               />
             </div>
           );

@@ -214,6 +214,7 @@ const FormProfileComponent = () => {
           <div>
             <Form.Item className={styles.form_item}>
               <Button
+                loading={isLoading}
                 className={styles.button}
                 htmlType="submit"
                 type="primary"

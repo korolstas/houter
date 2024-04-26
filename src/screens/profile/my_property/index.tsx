@@ -12,7 +12,9 @@ import styles from "./styles.module.scss";
 
 const MyPropertyComponent = () => {
   const { userStore } = useStore();
-  const { userProfile, cards, user } = userStore;
+  const { userProfile, cards, user, isLoadingUser } = userStore;
+
+  const isLoading = isLoadingUser;
 
   useEffect(() => {
     userProfile();
@@ -57,6 +59,7 @@ const MyPropertyComponent = () => {
               widthImg={250}
               heightImg={200}
               userCard={user}
+              isLoading={isLoading}
             />
           );
         })}

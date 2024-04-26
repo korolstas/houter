@@ -23,7 +23,7 @@ type FormSignUp = {
 
 const FormSignUpComponent = () => {
   const { userStore } = useStore();
-  const { fetchRegister, user } = userStore;
+  const { fetchRegister, user, isLoadingUser } = userStore;
   const router = useRouter();
 
   useEffect(() => {
@@ -132,9 +132,10 @@ const FormSignUpComponent = () => {
 
         <Form.Item>
           <Button
-            className={styles.button}
             type="primary"
             htmlType="submit"
+            loading={isLoadingUser}
+            className={styles.button}
             icon={<SwapRightOutlined style={{ fontSize: "25px" }} />}
           >
             Register

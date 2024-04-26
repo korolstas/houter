@@ -5,7 +5,7 @@ import styles from "./styles.module.scss";
 import { SvgSwitcher } from "../SvgSwitcher";
 
 type BannerProps = {
-  variant: BannerVariant | string;
+  variant?: BannerVariant | string;
 };
 
 const getData = (variant: BannerVariant | string) => {
@@ -38,8 +38,8 @@ const getData = (variant: BannerVariant | string) => {
 
 export const Banner = ({ variant }: BannerProps) => {
   return (
-    <div className={`${styles[variant]} ${styles.banner}`}>
-      {getData(variant)}
+    <div className={`${styles[variant ? variant : ""]} ${styles.banner}`}>
+      {getData(variant ? variant : "")}
     </div>
   );
 };

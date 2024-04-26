@@ -21,7 +21,7 @@ type FormLogin = {
 const FormLoginComponent = () => {
   const router = useRouter();
   const { userStore } = useStore();
-  const { fetchAuth, user } = userStore;
+  const { fetchAuth, user, isLoadingUser } = userStore;
 
   useEffect(() => {
     if (user) router.push("/", { scroll: false });
@@ -92,9 +92,10 @@ const FormLoginComponent = () => {
 
         <Form.Item>
           <Button
-            className={styles.button}
             type="primary"
             htmlType="submit"
+            loading={isLoadingUser}
+            className={styles.button}
             icon={<SwapRightOutlined style={{ fontSize: "25px" }} />}
           >
             Sign In
