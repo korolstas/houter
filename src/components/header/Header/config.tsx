@@ -3,6 +3,7 @@ import {
   SettingOutlined,
   // HeartOutlined,
   LogoutOutlined,
+  HeartOutlined,
 } from "@ant-design/icons";
 
 export const confMenu = [
@@ -45,12 +46,12 @@ export const configMenuType = [
     href: "/profile/my_property",
     icon: <AppstoreOutlined style={{ fontSize: "20px" }} />,
   },
-  // {
-  //   key: "2",
-  //   label: "Favorites",
-  //   href: "/profile/favorites",
-  //   icon: <HeartOutlined style={{ fontSize: "20px" }} />,
-  // },
+  {
+    key: "2",
+    label: "Favorites",
+    href: "/profile/favorites",
+    icon: <HeartOutlined style={{ fontSize: "20px" }} />,
+  },
   {
     key: "3",
     label: "Profile setting",

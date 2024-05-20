@@ -3,7 +3,7 @@
 import { useSearchParams } from "next/navigation";
 import { observer } from "mobx-react-lite";
 
-import { AntdProvider, FormEditAd } from "@components";
+import { AntdProvider, FormEditAd, LoaderLayout } from "@components";
 
 import styles from "./styles.module.scss";
 
@@ -12,13 +12,15 @@ const EditAdComponent = () => {
   const id = searchParams.get("id");
 
   return (
-    <div className={styles.display}>
-      <AntdProvider>
-        <div className={styles.page}>
-          <FormEditAd id={id} />
-        </div>
-      </AntdProvider>
-    </div>
+    <LoaderLayout>
+      <div className={styles.display}>
+        <AntdProvider>
+          <div className={styles.page}>
+            <FormEditAd id={id} />
+          </div>
+        </AntdProvider>
+      </div>
+    </LoaderLayout>
   );
 };
 

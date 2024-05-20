@@ -1,0 +1,31 @@
+@import "../../assets/styles/variables.scss";
+
+.page {
+  padding: 90px 0;
+  width: 100%;
+}
+
+.container {
+  width: 83%;
+  margin-inline: auto;
+  padding-top: 40px;
+
+  .header {
+    border: 1px solid $textGray;
+    border-radius: 16px;
+
+    &_box {
+      display: flex;
+      padding: 24px;
+    }
+  }
+
+  .cards {
+    padding-top: 40px;
+
+    display: flex;
+
+    flex-wrap: wrap;
+    gap: 20px;
+  }
+}

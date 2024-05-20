@@ -12,5 +12,8 @@ export type User = {
   work?: string | null;
   phone?: string | null;
   location?: string | null;
-  imgUrl?: string | StaticImport;
+  image?: string | StaticImport;
+  average_mark?: number;
+  assessed?: [];
+  assessed_count?: number;
 };

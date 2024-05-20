@@ -6,16 +6,12 @@
   justify-content: space-between;
   width: 100%;
   gap: 16px;
+  cursor: pointer;
 
   &_box {
     display: flex;
     align-items: center;
     gap: 16px;
-
-    &_image {
-      height: 40px;
-      width: 40px;
-    }
 
     &_description {
       display: flex;

@@ -1,26 +1,35 @@
 import { StaticImport } from "next/dist/shared/lib/get-img-props";
+import { EditOutlined } from "@ant-design/icons";
 import React, { CSSProperties } from "react";
 import Image from "next/image";
 
 import styles from "./styles.module.scss";
+import { useStore } from "@stores";
 
 type AvatarProps = {
-  lastName?: string;
-  firstName?: string;
-  id?: string | number;
+  id: string | number;
+  imgUrl: string | StaticImport | null;
+  firstName: string;
+  lastName: string;
   style?: CSSProperties;
-  image?: string | StaticImport;
-  isName?: boolean;
+  isCube?: boolean;
+  isEdit?: boolean;
+  size?: number;
 };
 
 export const CustomAvatar = ({
   firstName,
   lastName,
-  isName,
-  image,
+  isEdit,
+  isCube,
+  imgUrl,
   style,
+  size,
   id,
 }: AvatarProps) => {
+  const { userStore } = useStore();
+  const { updateUserImage } = userStore;
+
   const stringToColor = (str: string) => {
     let hash = 0;
     for (let i = 0; i < str.length; i++) {
@@ -38,20 +47,50 @@ export const CustomAvatar = ({
 
   const avatarStyle = {
     ...style,
-    backgroundColor: image ? "transparent" : stringToColor(initials + id),
-    color: image ? "transparent" : "#FFFFFF",
+    fontSize: `${size ? size / 2 : size}px`,
+    borderRadius: isCube ? 8 : `${size}px`,
+    height: `${size}px`,
+    width: `${size}px`,
+    backgroundColor: imgUrl ? "transparent" : stringToColor(initials + id),
+    color: imgUrl ? "transparent" : "#FFFFFF",
+  };
+
+  const onImageClick = () => {
+    const fileInput = document.createElement("input");
+    fileInput.type = "file";
+    fileInput.accept = "image/*";
+    fileInput.onchange = () => {
+      if (fileInput.files) {
+        const form = new FormData();
+        form.append("file", fileInput.files[0]);
+        // setSelectedFile(form);
+        updateUserImage(form);
+      }
+    };
+    fileInput.click();
   };
 
   return (
-    <>
-      {isName && firstName && lastName && `${firstName} ${lastName}`}
+    <div className={styles.avatar}>
       <div className={styles.avatar_icon} style={avatarStyle}>
-        {image ? (
-          <Image className={styles.avatar_icon_img} src={image} alt="avatar" />
+        {imgUrl ? (
+          <Image
+            width={60}
+            height={60}
+            style={{ borderRadius: isCube ? 8 : "50%" }}
+            className={styles.avatar_icon_img}
+            src={imgUrl}
+            alt={firstName + lastName}
+          />
         ) : (
           <span>{initials.toUpperCase()}</span>
         )}
       </div>
-    </>
+      {isEdit && (
+        <div onClick={onImageClick} className={styles.avatar_icon_edit}>
+          <EditOutlined />
+        </div>
+      )}
+    </div>
   );
 };

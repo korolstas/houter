@@ -16,12 +16,12 @@ type UserDropdownProps = {
 export const UserDropdown = ({ user, items }: UserDropdownProps) => {
   return (
     <Dropdown variant={"green"} items={items} overlayClassName={"green"}>
+      <div>{`${user.firstName} ${user.lastName}`}</div>
       <CustomAvatar
-        isName
+        id={user.id}
+        imgUrl={user?.image ? user?.image : null}
         firstName={user.firstName}
         lastName={user.lastName}
-        image={user?.imgUrl}
-        id={user.id}
       />
     </Dropdown>
   );

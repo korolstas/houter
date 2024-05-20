@@ -2,12 +2,14 @@
 
 import { observer } from "mobx-react-lite";
 
-import { FormProfile, ProfileLayout } from "@components";
+import { FormProfile, LoaderLayout, ProfileLayout } from "@components";
 
 const ProfileComponent = () => {
   return (
     <ProfileLayout>
-      <FormProfile />
+      <LoaderLayout height={200}>
+        <FormProfile />
+      </LoaderLayout>
     </ProfileLayout>
   );
 };

@@ -170,7 +170,7 @@ const FormCreateAdComponent = () => {
           </div>
 
           <Form.Item className={styles.form_item} name="description">
-            <Input.TextArea size="middle" />
+            <Input.TextArea autoSize minLength={20} size="middle" />
           </Form.Item>
 
           <div className={styles.placeholder}>

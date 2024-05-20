@@ -1,11 +1,11 @@
-import { Button, Form, Input } from "antd";
+import { Button, Form, Input, message } from "antd";
 import { useRouter } from "next/navigation";
 import { observer } from "mobx-react-lite";
 import { useEffect } from "react";
 import {
-  SafetyCertificateOutlined,
   SwapRightOutlined,
   MailOutlined,
+  LockOutlined,
 } from "@ant-design/icons";
 
 import { AntdProvider } from "@components";
@@ -21,11 +21,15 @@ type FormLogin = {
 const FormLoginComponent = () => {
   const router = useRouter();
   const { userStore } = useStore();
-  const { fetchAuth, user, isLoadingUser } = userStore;
+  const { fetchAuth, clearError, isLoadingUser, isAuth, errorUser } = userStore;
 
   useEffect(() => {
-    if (user) router.push("/", { scroll: false });
-  }, [user]);
+    if (isAuth) router.push("/");
+    else if (errorUser) {
+      message.error(errorUser);
+      clearError();
+    }
+  }, [isAuth, errorUser]);
 
   const onFinish = (data: FormLogin) => {
     fetchAuth({ password: data.password, email: data.email });
@@ -73,9 +77,7 @@ const FormLoginComponent = () => {
           <Input.Password
             size="large"
             placeholder="Enter Password"
-            prefix={
-              <SafetyCertificateOutlined style={{ paddingRight: "5px" }} />
-            }
+            prefix={<LockOutlined style={{ paddingRight: "5px" }} />}
           />
         </Form.Item>
 

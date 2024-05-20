@@ -7,6 +7,7 @@ import {
   UploadImageProps,
   CreateCardProps,
   EditCardProps,
+  CardProps,
 } from "./types";
 
 export class CardStore {
@@ -76,11 +77,27 @@ export class CardStore {
     }
   };
 
-  getCards = async () => {
+  getCards = async ({
+    user_id,
+    start_price,
+    end_price,
+    location,
+    realty,
+    rent,
+  }: CardProps) => {
     this.isLoadingCard = true;
 
     try {
-      const response = await instance.get("/property/ads");
+      const response = await instance.get(`/property/ads`, {
+        params: {
+          user_id,
+          start_price,
+          end_price,
+          location,
+          realty,
+          rent,
+        },
+      });
 
       runInAction(() => {
         const result = response.data;

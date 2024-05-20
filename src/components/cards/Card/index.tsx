@@ -18,10 +18,12 @@ type CardProps = {
   widthImg?: number;
   heightImg?: number;
   isLoading?: boolean;
-  isFavorite?: boolean;
+  isFavoriteShow?: boolean;
+  isFavorite: boolean;
   width?: number | string;
   margin?: number | string;
   height?: number | string;
+  favoriteId: number;
   banner?: BannerVariant | string;
 };
 
@@ -40,6 +42,8 @@ export const Card = ({
   widthImg,
   heightImg,
   isLoading,
+  isFavoriteShow,
+  favoriteId,
   isFavorite,
 }: CardProps) => {
   const router = useRouter();
@@ -48,7 +52,7 @@ export const Card = ({
   const { user } = userStore;
 
   const isYourCard = userCard?.id === user?.id;
-  const isFavoriteCard = !isYourCard && isFavorite && user?.id;
+  const isFavoriteCard = !isYourCard && isFavoriteShow && user?.id;
 
   const handleClick = () => {
     router.push(`/property/ad/show?id=${id}`);
@@ -105,7 +109,13 @@ export const Card = ({
               style={{ width: widthImg, height: heightImg }}
             />
             {banner && <Banner variant={banner} />}
-            {isFavoriteCard && <Favorite id={id} />}
+            {isFavoriteCard && (
+              <Favorite
+                favoriteId={favoriteId}
+                isFavorite={isFavorite}
+                id={id}
+              />
+            )}
           </div>
         )
       }
@@ -117,7 +127,7 @@ export const Card = ({
       />
       {!isYour && userCard && (
         <div style={{ marginTop: 20 }}>
-          <UserCard user={userCard} />
+          <UserCard user={userCard} size={40} />
         </div>
       )}
     </AntdCard>

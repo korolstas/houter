@@ -1,7 +1,8 @@
 "use client";
 
-import { Tooltip, message, Button, Select, Input, Form } from "antd";
 import { QuestionCircleOutlined, MailOutlined } from "@ant-design/icons";
+import { Tooltip, message, Button, Select, Input, Form } from "antd";
+import { useRouter } from "next/navigation";
 import { observer } from "mobx-react-lite";
 import { useEffect } from "react";
 
@@ -22,14 +23,16 @@ type FormProfile = {
 };
 
 const FormProfileComponent = () => {
+  const router = useRouter();
   const { userStore, countriesStore } = useStore();
   const { fetchCountries, countries, isLoadingCountries } = countriesStore;
-  const { user, updateUser, isLoadingUser } = userStore;
+  const { user, updateUser, isLoadingUser, userProfile } = userStore;
 
   const isLoading = isLoadingUser || isLoadingCountries;
 
   useEffect(() => {
-    if (!countries) fetchCountries();
+    userProfile(user.id);
+    fetchCountries();
   }, []);
 
   const onFinish = (data: FormProfile) => {
@@ -43,6 +46,7 @@ const FormProfileComponent = () => {
     });
 
     message.success("Account uploaded successfully");
+    router.refresh();
   };
 
   const optionsLocation = countries.map(({ name }) => ({
@@ -73,15 +77,7 @@ const FormProfileComponent = () => {
             <label>Phone number</label>
           </div>
 
-          <Form.Item
-            name="phone"
-            rules={[
-              {
-                pattern: /^\d+$/i,
-                message: "Invalid phone format",
-              },
-            ]}
-          >
+          <Form.Item name="phone">
             <Input placeholder="Enter Phone" size="large" />
           </Form.Item>
 
@@ -118,7 +114,7 @@ const FormProfileComponent = () => {
 
         <div className={`${styles.box} ${styles.profile}`}>
           <div style={{ marginBottom: 20 }}>
-            {user && <UserCard size={45} user={user} />}
+            {user && <UserCard isCube isEdit isRate size={70} user={user} />}
           </div>
 
           <div className={styles.profile_items}>
@@ -163,24 +159,12 @@ const FormProfileComponent = () => {
             </div>
           </div>
 
-          {/* <Form.Item name="birthday">
-                <DatePicker
-                  disabledDate={disabledDate}
-                  className={styles.item}
-                  placeholder="Enter Birthday"
-                  size="large"
-                />
-                <label className={styles.descrioption}>
-                  Will not be displayed in the profile
-                </label>
-              </Form.Item> */}
-
           <div className={styles.profile_items}>
             <div className={styles.block}>
               <div className={styles.placeholder}>
                 <label>Work</label>
               </div>
-              <Form.Item name="work">
+              <Form.Item noStyle name="work">
                 <Input placeholder="Enter Work" size="large" />
               </Form.Item>
 
@@ -194,7 +178,7 @@ const FormProfileComponent = () => {
                 <label>Location</label>
               </div>
 
-              <Form.Item name="location">
+              <Form.Item name="location" noStyle>
                 <Select
                   showSearch
                   size="large"

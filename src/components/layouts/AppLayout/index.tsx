@@ -3,8 +3,8 @@ import { ReactNode } from "react";
 
 import styles from "./styles.module.scss";
 
-import { HorizontalScroll } from "../HorizontalScroll";
-import { RaitingCard } from "../cards/RaitingCard";
+import { HorizontalScroll } from "../../HorizontalScroll";
+import { RaitingCard } from "../../cards/RaitingCard";
 
 type Props = {
   children: ReactNode;

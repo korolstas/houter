@@ -1,8 +1,9 @@
 "use client";
 
 import { Button, Form, Image, Input, Select, message } from "antd";
-import { observer } from "mobx-react-lite";
+import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
+import { observer } from "mobx-react-lite";
 import {
   CheckOutlined,
   DollarOutlined,
@@ -13,7 +14,6 @@ import { AntdProvider } from "@components";
 import { useStore } from "@stores";
 
 import styles from "../login/styles.module.scss";
-import { useRouter } from "next/navigation";
 
 type FormCreateAdProps = {
   price: number;
@@ -193,7 +193,7 @@ const FormEditAdComponent = ({ id }: { id?: string | null }) => {
           </div>
 
           <Form.Item className={styles.form_item} name="description">
-            <Input.TextArea autoSize size="middle" />
+            <Input.TextArea autoSize minLength={20} size="middle" />
           </Form.Item>
 
           <div className={styles.placeholder}>

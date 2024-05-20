@@ -13,7 +13,7 @@ import styles from "./styles.module.scss";
 import { AntdProvider } from "@/components/AntdProvider";
 
 type SliderProps = {
-  children: ReactNode[];
+  children: ReactNode;
   header: string;
   top: string;
 

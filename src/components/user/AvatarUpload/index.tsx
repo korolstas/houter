@@ -13,6 +13,8 @@ type AvatarUploadsProps = {
 export const AvatarUpload = ({ imgUrl, isDisabled }: AvatarUploadsProps) => {
   return imgUrl ? (
     <Image
+      width={60}
+      height={60}
       className={styles.avatar}
       style={{ border: 0 }}
       alt={"avatar"}

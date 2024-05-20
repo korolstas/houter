@@ -1,6 +1,6 @@
 import { ReactNode } from "react";
 
-import { ProfileMenu } from "../user";
+import { ProfileMenu } from "../../user";
 
 import styles from "./styles.module.scss";
 

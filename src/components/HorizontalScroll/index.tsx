@@ -3,7 +3,7 @@ import { CSSProperties, ReactNode, forwardRef } from "react";
 import styles from "./styles.module.scss";
 
 type HorizontalScrollProps = {
-  children: ReactNode[];
+  children: ReactNode;
   style?: CSSProperties;
 };
 

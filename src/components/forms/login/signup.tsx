@@ -3,10 +3,10 @@ import { useRouter } from "next/navigation";
 import { observer } from "mobx-react-lite";
 import { useEffect } from "react";
 import {
-  SafetyCertificateOutlined,
   SwapRightOutlined,
   MailOutlined,
   UserOutlined,
+  LockOutlined,
 } from "@ant-design/icons";
 
 import { AntdProvider } from "@components";
@@ -23,15 +23,15 @@ type FormSignUp = {
 
 const FormSignUpComponent = () => {
   const { userStore } = useStore();
-  const { fetchRegister, user, isLoadingUser } = userStore;
+  const { fetchRegister, isAuth, isLoadingUser } = userStore;
   const router = useRouter();
 
   useEffect(() => {
-    if (user) {
+    if (isAuth) {
       message.success("Account is creating successfully");
       router.push("/");
     }
-  }, [user]);
+  }, [isAuth]);
 
   const onFinish = (data: FormSignUp) => {
     fetchRegister({
@@ -124,9 +124,7 @@ const FormSignUpComponent = () => {
           <Input.Password
             size="large"
             placeholder="Enter Password"
-            prefix={
-              <SafetyCertificateOutlined style={{ paddingRight: "5px" }} />
-            }
+            prefix={<LockOutlined style={{ paddingRight: "5px" }} />}
           />
         </Form.Item>
 

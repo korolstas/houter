@@ -1,0 +1,21 @@
+@import "../../assets/styles/variables.scss";
+
+.rate {
+  &_span {
+    padding-right: 10px;
+    font-family: Lexend;
+    color: $textDarken;
+  }
+
+  &_link {
+    padding-left: 10px;
+    font-family: Lexend;
+    color: $backgroundGreen;
+    text-decoration: underline;
+    cursor: pointer;
+  }
+
+  span {
+    font-size: 16px;
+  }
+}

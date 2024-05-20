@@ -68,7 +68,7 @@ export const Composition = ({
               </div>
             </div>
             <div style={{ marginTop: "16px" }}>
-              <UserCard isContactNow={true} size={56} user={user} />
+              <UserCard isContactNow size={56} user={user} />
             </div>
           </div>
         </div>

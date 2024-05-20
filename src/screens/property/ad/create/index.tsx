@@ -2,19 +2,21 @@
 
 import { observer } from "mobx-react-lite";
 
-import { AntdProvider, FormCreateAd } from "@components";
+import { AntdProvider, FormCreateAd, LoaderLayout } from "@components";
 
 import styles from "./styles.module.scss";
 
 const CreateAdComponent = () => {
   return (
-    <div className={styles.display}>
-      <AntdProvider>
-        <div className={styles.page}>
-          <FormCreateAd />
-        </div>
-      </AntdProvider>
-    </div>
+    <LoaderLayout>
+      <div className={styles.display}>
+        <AntdProvider>
+          <div className={styles.page}>
+            <FormCreateAd />
+          </div>
+        </AntdProvider>
+      </div>
+    </LoaderLayout>
   );
 };
 
