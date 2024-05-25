@@ -30,7 +30,7 @@ export const Raiting = ({ user, isLink, value }: RaitingProps) => {
         <Rate value={user.average_mark} disabled allowHalf />
         {isLink && (
           <span className={styles.rate_link} onClick={handleRate}>
-            Raiting {user.assessed_count}
+            Rating {user.assessed_count}
           </span>
         )}
       </div>

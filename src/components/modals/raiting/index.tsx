@@ -92,7 +92,7 @@ export const ModalRaiting = ({ open, client, onCancel }: ModalRaitingProps) => {
               </h2>
             </div>
             <Rate allowHalf value={client.average_mark} disabled />
-            <h4>Raiting {client.assessed_count}</h4>
+            <h4>Rating {client.assessed_count}</h4>
           </div>
           {!isMe && user && (
             <div
